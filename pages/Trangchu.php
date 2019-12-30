@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Trang chủ</title>
-	<link rel="stylesheet" href="../CSS/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../font/css/all.css">
-	<link rel="stylesheet" href="../CSS/Trangchu.css">
+	<link rel="stylesheet" href="../css/Trangchu.css">
 </head>
 <body>
 	<header>
 			<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #ff8936";>
-			  <a class="navbar-brand" href="Trangchu.php"><img src="../IMG/logo.png" alt="" width="350px" height="70px" style="margin-left: 15px"></a>
+			  <a class="navbar-brand" href="Trangchu.php"><img src="../img/logo.png" alt="" width="350px" height="70px" style="margin-left: 15px"></a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
@@ -32,14 +32,14 @@
 				    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>				  </ol>
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
-				      <img src="../IMG/slide1.png" class="d-block w-100" alt="...">
+				      <img src="../img/slide1.png" class="d-block w-100" alt="...">
 				      <div class="carousel-caption d-none d-md-block">
 				        <h5>Lễ kỉ niệm</h5>
 				        <p>60 năm thành lập trường (1959 -2019)</p>
 				      </div>
 				    </div>
 				    <div class="carousel-item">
-				      <img src="../IMG/slide2.png" class="d-block w-100" alt="...">
+				      <img src="../img/slide2.png" class="d-block w-100" alt="...">
 				      <div class="carousel-caption d-none d-md-block">
 				        <h5>Chuỗi hoạt động </h5>
 				        <p>60 năm thành lập trường (1959- 2019)</p>
@@ -63,7 +63,7 @@
   				<div class="card mb-3" style="width: 100%;">
 				  <div class="row no-gutters">
 				    <div class="col-md-4">
-				      <img src="../IMG/tintuc.jpg" class="card-img">
+				      <img src="../img/tintuc.jpg" class="card-img">
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">
@@ -79,7 +79,7 @@
 				<div class="card mb-3" style="width: 100%;">
 				  <div class="row no-gutters">
 				    <div class="col-md-4">
-				      <img src="../IMG/thongbao.png" class="card-img" alt="...">
+				      <img src="../img/thongbao.png" class="card-img" alt="...">
 				    </div>
 				    <div class="col-md-8">
 				      <div class="card-body">
@@ -101,7 +101,7 @@
 				<div class="footer-col">
 					<h3>MAP</h3>
 					<a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+H%E1%BB%8Dc+Th%E1%BB%A7y+L%E1%BB%A3i/@21.0073828,105.822535,17z/data=!3m1!4b1!4m5!3m4!1s0x3135ac8109765ba5:0xd84740ece05680ee!8m2!3d21.0073828!4d105.8247237?hl=vi-VN">
-						<img src="../IMG/TLU-map.png" alt="" width="80%" height="75%"></a>
+						<img src="../img/TLU-map.png" alt="" width="80%" height="75%"></a>
 				</div>
 				<div class="footer-col">
 					<h3>TRƯỜNG ĐẠI HỌC THỦY LỢI</h3>
@@ -139,6 +139,6 @@
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="../CSS/bootstrap.js"></script>
+	<script src="../css/bootstrap.js"></script>
 </body>
 </html>
