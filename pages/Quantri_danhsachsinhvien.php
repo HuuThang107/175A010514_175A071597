@@ -7,6 +7,8 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style1.css" rel="stylesheet">
         <link href="../css/style2.css" rel="stylesheet">
+        <link href="../css/style3.css" rel="stylesheet">
+        <link href="../css/style4.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </head>
     <body>

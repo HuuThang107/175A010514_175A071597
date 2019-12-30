@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../css/dangnhap.css">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
 </head>
-<body style="background-image: url('../img/tlu3.jpg')">
+<body>
   <form method="POST" action="Dangnhap.php">
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
