@@ -95,9 +95,7 @@
                         </tr>
 
                     </table>
-                    <div align="right">
-                        <button type="button" name="add" id="add" class="btn btn-success btn-xs">Thêm</button>
-                    </div>
+
                     <div align="center">
                         <button type="button" name="save" id="save" class="btn btn-info">Lưu</button>
                     </div>
@@ -113,23 +111,6 @@
 
 <script>
     $(document).ready(function(){
-        var count = 1;
-        $('#add').click(function(){
-            count = count + 1;
-            var html_code = "<tr magv='row"+count+"'>";
-            html_code += "<td contenteditable='true' class='tengv'></td>";
-            html_code += "<td contenteditable='true' class='diachi'></td>";
-            html_code += "<td contenteditable='true' class='sdt'></td>";
-            html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>Hủy</button></td>";
-            html_code += "</tr>";
-            $('#crud_table').append(html_code);
-        });
-
-        $(document).on('click', '.remove', function(){
-            var delete_row = $(this).data("row");
-            $('#' + delete_row).remove();
-        });
-
         $('#save').click(function(){
             var tengv = [];
             var diachi = [];
@@ -151,10 +132,7 @@
                 success:function(data){
                     alert(data);
                     $("td[contentEditable='true']").text("");
-                    for(var i=2; i<= count; i++)
-                    {
-                        $('tr#'+i+'').remove();
-                    }
+
                     fetch_item_data();
                 }
             });

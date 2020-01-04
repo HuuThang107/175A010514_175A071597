@@ -6,7 +6,7 @@ $query = "SELECT * FROM giaovien ORDER BY magv DESC";
 $result = mysqli_query($conn, $query);
 $output = '
 <br />
-<h3 align="center">Item Data</h3>
+<h3 align="center">Danh sach</h3>
 <table class="table table-bordered table-striped">
  <tr>
   <th width="30%">Tên giáo viên</th>
