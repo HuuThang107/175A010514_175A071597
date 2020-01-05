@@ -1,6 +1,10 @@
 <?php
 require_once '../includes/connection.php';
 
-$id = $_POST['magv'];
-$conn->query("DELETE FROM giaovien WHERE magv ='$id'");
+if(isset($_POST['id'])) {
+    $id = $_POST['id'];
+
+    $delete = "DELETE FROM giaovien WHERE magv ='$id' ";
+    $del = mysqli_query($conn, $delete);
+}
 ?>

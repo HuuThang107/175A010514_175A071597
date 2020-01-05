@@ -80,27 +80,27 @@
                 <h2 align="center">Thêm dữ liệu</h2>
                 <br />
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="crud_table">
+                    <table class="table table-bordered" id="table">
                         <tr>
                             <th width="30%">Tên Giáo Viên</th>
-                            <th width="20%">Địa Chỉ</th>
-                            <th width="45%">Số Điện Thoại</th>
-                            <th width="5%"></th>
+                            <th width="30%">Địa Chỉ</th>
+                            <th width="40%">Số Điện Thoại</th>
+
                         </tr>
                         <tr>
                             <td contenteditable="true" class="tengv"></td>
                             <td contenteditable="true" class="diachi"></td>
                             <td contenteditable="true" class="sdt"></td>
-                            <td></td>
+
                         </tr>
 
                     </table>
 
-                    <div align="center">
-                        <button type="button" name="save" id="save" class="btn btn-info">Lưu</button>
+                    <div align="right">
+                        <button type="button" name="save" id="luu" class="btn btn-info">Lưu</button>
                     </div>
                     <br />
-                    <div id="inserted_item_data"></div>
+                    <div id="themdulieu"></div>
 
                 </div>
 
@@ -111,7 +111,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#save').click(function(){
+        $('#luu').click(function(){
             var tengv = [];
             var diachi = [];
             var sdt = [];
@@ -145,7 +145,7 @@
                 method:"POST",
                 success:function(data)
                 {
-                    $('#inserted_item_data').html(data);
+                    $('#themdulieu').html(data);
                 }
             })
         }

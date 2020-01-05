@@ -1,17 +1,15 @@
 <?php
-//fetch.php
 require_once ("../includes/connection.php");
 $output = '';
-$query = "SELECT * FROM giaovien ORDER BY magv DESC";
+$query = "SELECT * FROM nganhhoc ORDER BY manganh DESC";
 $result = mysqli_query($conn, $query);
 $output = '
 <br />
-<h3 align="center">Danh sach</h3>
+<h3 align="center">Danh sách</h3>
 <table class="table table-bordered table-striped">
  <tr>
-  <th width="30%">Tên giáo viên</th>
-  <th width="20%">Địa chỉ</th>
-  <th width="50%">Số điện thoại</th>
+  <th width="30%">Tên Ngành</th>
+  <th width="20%">Mô tả</th>
   
  </tr>
 ';
@@ -19,9 +17,9 @@ while($row = mysqli_fetch_array($result))
 {
     $output .= '
  <tr>
-  <td>'.$row["tengv"].'</td>
-  <td>'.$row["diachi"].'</td>
-  <td>'.$row["sdt"].'</td>
+  <td>'.$row["tennganh"].'</td>
+  <td>'.$row["mota"].'</td>
+
  </tr>
  ';
 }

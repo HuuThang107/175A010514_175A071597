@@ -1,27 +1,26 @@
 <?php
 require_once ("../includes/connection.php");
 
-if(isset($_POST['hidden_id']))
+if(isset($_POST['magv']))
 {
     $name = $_POST['tengv'];
     $address = $_POST['diachi'];
     $phones = $_POST['sdt'];
-    $id = $_POST['hidden_id'];
+    $id = $_POST['magv'];
     for($count = 0; $count < count($id); $count++)
     {
         $data = array(
             ':tengv'   => $name[$count],
             ':diachi'  => $address[$count],
             ':sdt'  => $phones[$count],
-            ':id'   => $id[$count]
+            ':magv'   => $id[$count]
         );
         $query = "
   UPDATE giaovien
   SET tengv = :tengv, diachi = :diachi, sdt = :sdt
-  WHERE id = :id
+  WHERE magv = :magv
   ";
-        $statement = $conn->prepare($query);
-        $statement->execute($data);
+        $result = mysqli_query($conn, $query);
     }
 }
 ?>

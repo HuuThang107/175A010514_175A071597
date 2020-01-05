@@ -9,6 +9,9 @@
         <link href="../css/style3.css" rel="stylesheet">
         <link href="../css/style4.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
 
@@ -71,15 +74,79 @@
                 </div>
             </nav>
 
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="page-header" align="center">Danh sách các ngành</h3>
-                        </div>
+            <br /><br />
+            <div class="container">
+                <br />
+                <h2 align="center">Thêm dữ liệu</h2>
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="crud_table">
+                        <tr>
+                            <th width="50%">Tên Ngành</th>
+                            <th width="50%">Mô Tả</th>
+
+                        </tr>
+                        <tr>
+                            <td contenteditable="true" class="tennganh"></td>
+                            <td contenteditable="true" class="mota"></td>
+
+                        </tr>
+
+                    </table>
+
+                    <div align="right">
+                        <button type="button" name="save" id="luu" class="btn btn-info">Lưu</button>
                     </div>
+                    <br />
+                    <div id="themdulieu"></div>
+
                 </div>
+
             </div>
+        </div>
         </div>
     </body>
 </html>
+
+<script>
+    $(document).ready(function(){
+        $('#luu').click(function(){
+            var tennganh = [];
+            var mota = [];
+
+            $('.tennganh').each(function(){
+                tennganh.push($(this).text());
+            });
+            $('.mota').each(function(){
+                mota.push($(this).text());
+            });
+
+
+            $.ajax({
+                url:"Quanly-Themnganh.php",
+                method:"POST",
+                data:{tennganh:tennganh, mota:mota, },
+                success:function(data){
+                    alert(data);
+                    $("td[contentEditable='true']").text("");
+
+                    fetch_item_data();
+                }
+            });
+        });
+
+        function fetch_item_data()
+        {
+            $.ajax({
+                url:"Quanly-loadnganh.php",
+                method:"POST",
+                success:function(data)
+                {
+                    $('#themdulieu').html(data);
+                }
+            })
+        }
+        fetch_item_data();
+
+    });
+</script>
