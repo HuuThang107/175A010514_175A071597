@@ -74,79 +74,117 @@
                 </div>
             </nav>
 
-            <br /><br />
-            <div class="container">
-                <br />
-                <h2 align="center">Thêm dữ liệu</h2>
-                <br />
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="crud_table">
-                        <tr>
-                            <th width="50%">Tên Ngành</th>
-                            <th width="50%">Mô Tả</th>
 
-                        </tr>
-                        <tr>
-                            <td contenteditable="true" class="tennganh"></td>
-                            <td contenteditable="true" class="mota"></td>
+        </div>
+        </div>
 
-                        </tr>
+        <div class="container">
+            <div class="col-md-12">
+                <center><h3>Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_nganh">
 
-                    </table>
-
-                    <div align="right">
-                        <button type="button" name="save" id="luu" class="btn btn-info">Lưu</button>
-                    </div>
-                    <br />
-                    <div id="themdulieu"></div>
-
+                    <label>Tên ngành</label>
+                    <input type="text" class="form-control" id="tennganh" placeholder="Điền tên ngành">
+                    <br>
+                    <label>Mô tả</label>
+                    <input type="text" class="form-control" id="mota" placeholder="Mô tả chung cho ngành">
+                    <br>
+                    <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
+                </form>
+                <div id="load_dulieu">
                 </div>
 
             </div>
         </div>
-        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //Load du lieu
+                function fetch_item_data()
+                {
+                    $.ajax({
+                        url:"quanly-nganh.php",
+                        method:"POST",
+                        success:function(data)
+                        {
+                            $('#load_dulieu').html(data);
+                        }
+                    });
+                }
+                fetch_item_data();
+
+                // Xoa du lieu
+                $(document).on('click','.del_data',function () {
+                    var newID = $(this).data('id_del');
+                    $.ajax({
+                        url:"quanly-nganh.php",
+                        method: "POST",
+                        data:{newID:newID},
+                        success:function(data) {
+                            alert("Xóa dữ liệu thành công!");
+                            fetch_item_data();
+                        }
+                    });
+
+                });
+
+                //Sua du lieu
+
+                function edit_data(id,text,column_name) {
+                    $.ajax({
+                        url: "quanly-nganh.php",
+                        method: "POST",
+                        data: {id: id, text: text, column_name},
+                        success: function (data) {
+
+                            alert("Sửa dữ liệu thành công!");
+                            fetch_item_data();
+                        }
+                    });
+                }
+
+                $(document).on('blur', '.tennganh', function () {
+                    var id = $(this).data('id_ten');
+                    var text = $(this).text();
+                    edit_data(id, text, "tennganh");
+
+                });
+                $(document).on('blur', '.mota', function () {
+                    var id = $(this).data('id_mt');
+                    var text = $(this).text();
+                    edit_data(id, text, "mota");
+
+                });
+
+                //Them du lieu
+                $('#button_them').on('click',function () {
+                    var tennganh = $('#tennganh').val();
+                    var mota = $('#mota').val();
+                    if(tennganh == '' || mota == '' )
+                    {
+                        alert('Vui lòng nhập đầy đủ dữ liệu');
+                    }
+                    else {
+                        $.ajax({
+                            url:"quanly-nganh.php",
+                            method: "POST",
+                            data:{tennganh:tennganh,mota:mota},
+                            success:function(data) {
+
+                                alert("Thêm dữ liệu thành công!");
+
+                                $('#insert_nganh')[0].reset();
+                                fetch_item_data();
+                            }
+                        });
+                    }
+                });
+
+
+
+
+            });
+
+        </script>
     </body>
 </html>
 
-<script>
-    $(document).ready(function(){
-        $('#luu').click(function(){
-            var tennganh = [];
-            var mota = [];
-
-            $('.tennganh').each(function(){
-                tennganh.push($(this).text());
-            });
-            $('.mota').each(function(){
-                mota.push($(this).text());
-            });
-
-
-            $.ajax({
-                url:"Quanly-Themnganh.php",
-                method:"POST",
-                data:{tennganh:tennganh, mota:mota, },
-                success:function(data){
-                    alert(data);
-                    $("td[contentEditable='true']").text("");
-
-                    fetch_item_data();
-                }
-            });
-        });
-
-        function fetch_item_data()
-        {
-            $.ajax({
-                url:"Quanly-loadnganh.php",
-                method:"POST",
-                success:function(data)
-                {
-                    $('#themdulieu').html(data);
-                }
-            })
-        }
-        fetch_item_data();
-
-    });
-</script>

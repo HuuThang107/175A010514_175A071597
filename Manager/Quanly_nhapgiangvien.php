@@ -91,11 +91,7 @@
             <label>Số điện thoại</label>
             <input type="text" class="form-control" id="sdt" placeholder="Điền số điện thoại giáo viên">
             <br>
-
             <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
-
-
-
             </form>
             <div id="load_dulieu">
             </div>
@@ -108,7 +104,7 @@
                 function fetch_item_data()
                 {
                     $.ajax({
-                        url:"quangly-themgiaovien.php",
+                        url:"quanly-giaovien.php",
                         method:"POST",
                         success:function(data)
                         {
@@ -122,7 +118,7 @@
                 $(document).on('click','.del_data',function () {
                     var magv = $(this).data('id_del');
                     $.ajax({
-                        url:"quangly-themgiaovien.php",
+                        url:"quanly-giaovien.php",
                         method: "POST",
                         data:{magv:magv},
                         success:function(data) {
@@ -137,7 +133,7 @@
 
                 function edit_data(id,text,column_name) {
                     $.ajax({
-                        url: "quangly-themgiaovien.php",
+                        url: "quanly-giaovien.php",
                         method: "POST",
                         data: {id: id, text: text, column_name},
                         success: function (data) {
@@ -178,7 +174,7 @@
                     }
                     else {
                         $.ajax({
-                            url:"quangly-themgiaovien.php",
+                            url:"quanly-giaovien.php",
                             method: "POST",
                             data:{tengv:tengv,diachi:diachi,sdt:sdt},
                             success:function(data) {
@@ -191,12 +187,7 @@
                         });
                     }
                 });
-
-
-
-
             });
-
         </script>
     </body>
 </html>

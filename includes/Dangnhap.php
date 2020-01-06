@@ -83,8 +83,8 @@ if (isset($_POST["btn_submit"])) {
                 $_SESSION["id"] = $data["id"];
                 $_SESSION['tentk'] = $data["tentk"];
                 $_SESSION["matkhau"] = $data["mk"];
-                $_SESSION["level"] = $data["level"];
-                if($data['level']==3){
+                $_SESSION["cap"] = $data["cap"];
+                if($data['cap']==3){
                     header("location: ../Admin/Quantri_danhsachgiangvien.php");
                 }
                 elseif ($data['level']==2){

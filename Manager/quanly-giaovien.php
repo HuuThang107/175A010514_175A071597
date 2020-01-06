@@ -62,8 +62,4 @@ while($row = mysqli_fetch_array($result))
 }
 $output .= '</table>';
 echo $output;
-
-
-
-
 ?>

@@ -1,3 +1,11 @@
+<?php
+require_once ("../includes/connection.php");
+$query = "SELECT * FROM nganhhoc ORDER BY manganh DESC";
+$result = mysqli_query($conn, $query);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,6 +17,12 @@
         <link href="../css/style3.css" rel="stylesheet">
         <link href="../css/style4.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body>
 
@@ -30,10 +44,10 @@
                                 <a href="#" class="active"><i class="fa fa-book"></i>   Ngành học</a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="Quanly_danhsachnganh.php"><i class="fa fa-list"></i> Danh sách các ngành</a>
+                                        <a href="Quanly_danhsachnganh.php"><i class="fa fa-list"></i> Quản lý ngành học</a>
                                     </li>
                                     <li>
-                                        <a href="Quanly_themnganh.php"><i class="fa fa-plus-square"></i> Quản lý ngành học</a>
+                                        <a href="Quanly_themnganh.php"><i class="fa fa-plus-square"></i> Quản lý môn học</a>
                                     </li>
                                 </ul>
                             </li>
@@ -70,37 +84,116 @@
                     </div>
                 </div>
             </nav>
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <center><h3>Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_monhoc">
 
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="page-header" align="center">Thêm mới ngành học</h3>
-                        </div>
-                        <form name="edit_course">
-                        <table class="table-form-edit" align="center" bgcolor="#FFFFFF">
-                            <tr>
-                                <td width="180" height="50px">Mã ngành học</td>
-                                <td width="300"><input type="text" value="" name="makh" size="40"></td>
-                            </tr>
-                            <tr>
-                                <td height="50px">Tên ngành học</td>
-                                <td><input type="text" value="" size="40"></td>
-                            </tr>                   
-                            <tr>
-                                <td height="50px">Mô tả chung</td>
-                                <td height="50px"><textarea cols="30" rows="5" name="description"></textarea></td>
-                            </tr>
-                            <tr>
-                                <td align="center" height="50px" ></td>
-                                <td><a href="khoahoc.html"><input type="submit" value="Lưu lại" name="submit"></a></td>
-                            </tr>
-                        </table>
-                    </form>
-                    </div>
+                    <label>Tên môn học</label>
+                    <input type="text" class="form-control" id="tenmon" placeholder="Điền tên môn học">
+                    <br>
+                    <label>Chọn ngành</label>
+                    <select class="form-control" id="nganh" name="tennganh">
+                        <option>----------Chọn ngành----------</option>
+                        <?php
+                        while($row_nganh=mysqli_fetch_array($result)){
+                            echo '<option value="'.$row_nganh['manganh'].'">'.$row_nganh['tennganh'].'</option>';
+                        }
+                        ?>
+                    <br>
+                    <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
+                </form>
+                <div id="load_dulieu">
                 </div>
+
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //Load du lieu
+                function fetch_item_data()
+                {
+                    $.ajax({
+                        url:"quanly-monhoc.php",
+                        method:"POST",
+                        success:function(data)
+                        {
+                            $('#load_dulieu').html(data);
+                        }
+                    });
+                }
+                fetch_item_data();
+
+                // Xoa du lieu
+                $(document).on('click','.del_data',function () {
+                    var newID = $(this).data('id_del');
+                    $.ajax({
+                        url:"quanly-monhoc.php",
+                        method: "POST",
+                        data:{newID:newID},
+                        success:function(data) {
+                            alert("Xóa dữ liệu thành công!");
+                            fetch_item_data();
+                        }
+                    });
+
+                });
+
+                //Sua du lieu
+
+                function edit_data(id,text,column_name) {
+                    $.ajax({
+                        url: "quanly-monhoc.php",
+                        method: "POST",
+                        data: {id: id, text: text, column_name},
+                        success: function (data) {
+
+                            alert("Sửa dữ liệu thành công!");
+                            fetch_item_data();
+                        }
+                    });
+                }
+
+                $(document).on('blur', '.tenmon', function () {
+                    var id = $(this).data('id_ten');
+                    var text = $(this).text();
+                    edit_data(id, text, "tenmon");
+
+                });
+                $(document).on('blur', '.nganh', function () {
+                    var id = $(this).data('id_nganh');
+                    var text = $(this).text();
+                    edit_data(id, text, "nganh");
+
+                });
+
+                //Them du lieu
+                $('#button_them').on('click',function () {
+                    var tenmon = $('#tenmon').val();
+                    var nganh = $('#nganh').val();
+                    if(tenmon == '' || nganh == '' || nganh =='----------Chọn ngành----------')
+                    {
+                        alert('Vui lòng nhập đầy đủ dữ liệu');
+                    }
+                    else {
+                        $.ajax({
+                            url:"quanly-monhoc.php",
+                            method: "POST",
+                            data:{tenmon:tenmon,nganh:nganh},
+                            success:function(data) {
+
+                                alert("Thêm dữ liệu thành công!");
+
+                                $('#insert_monhoc')[0].reset();
+                                fetch_item_data();
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+
 
     </body>
 </html>

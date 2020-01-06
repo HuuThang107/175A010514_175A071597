@@ -74,82 +74,8 @@
                 </div>
             </nav>
 
-            <br /><br />
-            <div class="container">
-                <br />
-                <h2 align="center">Thêm dữ liệu</h2>
-                <br />
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="table">
-                        <tr>
-                            <th width="30%">Tên Giáo Viên</th>
-                            <th width="30%">Địa Chỉ</th>
-                            <th width="40%">Số Điện Thoại</th>
 
-                        </tr>
-                        <tr>
-                            <td contenteditable="true" class="tengv"></td>
-                            <td contenteditable="true" class="diachi"></td>
-                            <td contenteditable="true" class="sdt"></td>
-
-                        </tr>
-
-                    </table>
-
-                    <div align="right">
-                        <button type="button" name="save" id="luu" class="btn btn-info">Lưu</button>
-                    </div>
-                    <br />
-                    <div id="themdulieu"></div>
-
-                </div>
-
-            </div>
-        </div>
     </body>
 </html>
 
-<script>
-    $(document).ready(function(){
-        $('#luu').click(function(){
-            var tengv = [];
-            var diachi = [];
-            var sdt = [];
-            $('.tengv').each(function(){
-                tengv.push($(this).text());
-            });
-            $('.diachi').each(function(){
-                diachi.push($(this).text());
-            });
-            $('.sdt').each(function(){
-                sdt.push($(this).text());
-            });
 
-            $.ajax({
-                url:"Quanly-Them.php",
-                method:"POST",
-                data:{tengv:tengv, diachi:diachi, sdt:sdt},
-                success:function(data){
-                    alert(data);
-                    $("td[contentEditable='true']").text("");
-
-                    fetch_item_data();
-                }
-            });
-        });
-
-        function fetch_item_data()
-        {
-            $.ajax({
-                url:"Quanly-load.php",
-                method:"POST",
-                success:function(data)
-                {
-                    $('#themdulieu').html(data);
-                }
-            })
-        }
-        fetch_item_data();
-
-    });
-</script>
