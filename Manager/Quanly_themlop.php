@@ -1,3 +1,20 @@
+<?php
+require_once ("../includes/connection.php");
+function fill_monhoc($conn)
+{
+    $output = '';
+    $sql = "SELECT * FROM monhoc";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $output .= '<option value="'.$row["mamon"].'">'.$row["tenmon"].'</option>';
+    }
+    return $output;
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,6 +26,10 @@
         <link href="../css/style3.css" rel="stylesheet">
         <link href="../css/style4.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
 
@@ -70,46 +91,119 @@
                     </div>
                 </div>
             </nav>
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <center><h3>Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_lophocphan">
 
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="page-header" align="center">Thêm lớp học</h3>
-                        </div>
-                        <form name="edit_course">
-                        <table class="table-form-edit" align="center" bgcolor="#FFFFFF">
-                            <tr>
-                                <td width="180" height="50px">Mã lớp học</td>
-                                <td width="300"><input type="text" value="" name="makh" size="40"></td>
-                            </tr>
-                            <tr>
-                                <td height="50px">Tên lớp học</td>
-                                <td><input type="text" value="" size="40"></td>
-                            </tr>
-                            <tr>
-                                <td height="50px">Tên ngành</td>
-                                <td><select >
-                                    <option selected="selected">----Chọn ngành-----</option>
-                                    <option >CNTT</option>
-                                    <option >Công trình</option>
-                                    <option >Kinh tế</option>
-                                    <option >Cơ khí</option>                                
-                                </select></td>
-                            </tr>
-                            <tr>
-                                <td height="50px">Phòng học</td>
-                                <td><input type="text"  value="" size="40"></td>
-                            </tr>
-                            <tr>
-                                <td align="center" height="50px"></td>
-                                <td><a href="#"><input type="submit" value="Lưu lại" name="submit"></a></td>
-                            </tr>
-                        </table>
-                    </form>
-                    </div>
+                    <label>Tên lớp học phần</label>
+                    <input type="text" class="form-control" id="tenlophocphan" placeholder="Điền tên lớp học phần">
+                    <br>
+                    <label>Chọn môn</label>
+                    <select class="form-control" id="mamon" name="mamon">
+                        <option value="">Chọn môn học</option>
+                        <?php echo fill_monhoc($conn); ?>
+                    </select>
+                    <br>
+                    <label>Chọn giáo viên</label>
+                    <select class="form-control" id="magv" name="tengv" >
+                    </select>
+                    <br>
+                    <label>Năm học</label>
+                    <input type="text" class="form-control" id="namhoc" placeholder="Năm học">
+                    <br>
+                    <label>Học kì</label>
+                    <input type="text" class="form-control" id="hocki" placeholder="Học kì">
+                    <br>
+                    <label>Giai đoạn</label>
+                    <input type="text" class="form-control" id="giaidoan" placeholder="Giai đoạn">
+                    <br>
+                    <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
+                    <br>
+                </form>
+                <br>
+                <div class="table-responsive" id="lophocphan_table">
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#mamon').change(function () {
+                    var mamon = $(this).val();
+                    $.ajax({
+                        url: "quanly-lophocphan.php",
+                        method: "POST",
+                        data:{mamon:mamon},
+                        success: function (data) {
+                            $('#magv').html(data);
+                        }
+                    });
+
+                })
+
+            })
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                load_du_lieu();
+                function load_du_lieu() {
+                    $.ajax({
+                        url: "quanly-lophocphan.php",
+                        method: "POST",
+                        success: function (data) {
+                            $('#lophocphan_table').html(data);
+                        }
+                    });
+                }
+                load_du_lieu();
+
+                //Them du lieu
+                $('#button_them').on('click', function () {
+                    var tenlophocphan = $('#tenlophocphan').val();
+                    var mamon = $('#mamon').val();
+                    var magv = $('#magv').val();
+                    var namhoc = $('#namhoc').val();
+                    var hocki = $('#hocki').val();
+                    var giaidoan = $('#giaidoan').val();
+                    if (tenlophocphan == ''  || mamon == '----------Chọn môn----------' || magv == '----------Chọn giáo viên----------' || namhoc == '' || hocki == '' || giaidoan == '') {
+                        alert('Vui lòng nhập đầy đủ dữ liệu');
+                    } else {
+                        $.ajax({
+                            url: "quanly-lophocphan.php",
+                            method: "POST",
+                            data: {
+                                tenlophocphan: tenlophocphan,
+                                mamon: mamon,
+                                magv: magv,
+                                namhoc: namhoc,
+                                hocki: hocki,
+                                giaidoan: giaidoan
+                            },
+                            success: function (data) {
+                                alert("Thêm dữ liệu thành công!");
+                                $('#insert_lophocphan')[0].reset();
+                                load_du_lieu();
+                            }
+                        });
+                    }
+                });
+                load_du_lieu();
+                //xoa du lieu
+                $(document).on('click', '.del', function () {
+                    var newID = $(this).attr("id");
+                    if (confirm('Bạn muốn bay màu môn này ?')) {
+                        $.ajax({
+                            url: "quanly-lophocphan.php",
+                            method: "POST",
+                            data: {newID: newID},
+                            success: function (data) {
+                                load_du_lieu();
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

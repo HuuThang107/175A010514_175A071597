@@ -1,3 +1,18 @@
+<?php
+require_once ("../includes/connection.php");
+function fill_lophoc($conn)
+{
+    $output = '';
+    $sql = "SELECT * FROM lophocphan";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $output .= '<option value="'.$row["malophocphan"].'">'.$row["tenlophocphan"].'</option>';
+    }
+    return $output;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,6 +25,9 @@
         <link href="../css/style4.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet" type="">
         <link rel="stylesheet" href="../css/bootstrap-social.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
 
@@ -48,16 +66,7 @@
                     </div>
                 </div>
             </nav>
-
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="page-header" align="center">Danh sách sinh viên</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+
     </body>
 </html>

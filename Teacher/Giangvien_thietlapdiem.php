@@ -1,3 +1,32 @@
+<?php
+require_once ("../includes/connection.php");
+function fill_lophoc($conn)
+{
+    $output = '';
+    $sql = "SELECT * FROM lophocphan";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $output .= '<option value="'.$row["malophocphan"].'">'.$row["tenlophocphan"].'</option>';
+    }
+    return $output;
+}
+function fill_sinhvien($conn)
+{
+    $output = '';
+    $sql = "SELECT * FROM sinhvien";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_array($result))
+    {
+        $output .= '<option value="'.$row["masv"].'">'.$row["tensv"].'</option>';
+    }
+    return $output;
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,6 +38,10 @@
         <link href="../css/style3.css" rel="stylesheet">
         <link href="../css/style4.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../css/bootstrap-social.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
 
@@ -47,46 +80,117 @@
                     </div>
                 </div>
             </nav>
+        </div>
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <center><h3>Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_diem" >
+                    <label>Nhập trọng số điểm quá trình</label>
+                    <input type="text" class="form-control" id="trongso" placeholder="Nhập trọng số">
+                    <br>
+                    <label>Chọn lớp</label>
+                    <select class="form-control" id="malophocphan" name="malophocphan">
+                        <option value="">Chọn lớp học</option>
+                        <?php echo fill_lophoc($conn); ?>
+                    </select>
+                    <br>
+                    <label>Chọn sinh viên</label>
+                    <select class="form-control" id="masv" name="masv">
+                        <option value="">Chọn sinh viên</option>
+                        <?php echo fill_sinhvien($conn); ?>
+                    </select>
+                    <br>
+                    <label>Điểm chuyên cần</label>
+                    <input type="text" class="form-control" id="dcc" placeholder="Điểm chuyên cần">
+                    <br>
+                    <label>Điểm giữa kì</label>
+                    <input type="text" class="form-control" id="dgk" placeholder="Điểm giữa kì">
+                    <br>
+                    <label>Điểm bài tập</label>
+                    <input type="text" class="form-control" id="dbt" placeholder="Điểm bài tập">
+                    <br>
+                    <label>Điểm thực hành</label>
+                    <input type="text" class="form-control" id="dth" placeholder="Điểm thực hành">
+                    <br>
+                    <label>Điểm Thi</label>
+                    <input type="text" class="form-control" id="diemthi" placeholder="Điểm thi hết môn">
+                    <br>
+                    <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
+                    <br>
 
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="page-header" align="center">Thiết lập trọng số điểm</h3>
-                        </div>
-                        <div class="list-course">
-                            <form name="edit_course">
-                        <table class="table-form-edit" align="center" bgcolor="#FFFFFF">
-                            <tr>
-                                <td height="70px" width="350px">Điểm quá trình / Điểm thi</td>
-                                <td><select >
-                                    <option selected="selected">------Chọn tỷ lệ-------</option>
-                                    <option >3 / 7</option>
-                                    <option >4 / 6</option>
-                                    <option >5 / 5</option>
-                                    <option >4 / 6</option>
-                                </select></td>
-                            </tr>
-                            <tr>
-                                <td height="70px">Điểm quá trình (Chuyên cần/ Phát biểu/ Kiểm tra)</td>
-                                <td><select >
-                                    <option selected="selected">------Chọn tỷ lệ-------</option>
-                                    <option >2 / 2 / 6</option>
-                                    <option >3 / 2 / 5</option>
-                                    <option >2 / 3 / 5</option>
-                                    <option >3 / 3 / 4</option>
-                                </select></td>
-                            </tr>
-                            <tr>
-                                <td align="center" height="70px"></td>
-                                <td><a href="#"><input type="submit" value="Lưu lại" name="submit"></a></td>
-                            </tr>
-                        </table>
-                    </form>
-                        </div>
-                    </div>
+                </form>
+                <br>
+                <div class="table-responsive" id="diem_table">
                 </div>
             </div>
         </div>
+
     </body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            load_du_lieu();
+            function load_du_lieu() {
+                $.ajax({
+                    url: "giaovien-phancong.php",
+                    method: "POST",
+                    success: function (data) {
+                        $('#diem_table').html(data);
+                    }
+                });
+            }
+            load_du_lieu();
+
+            //Them du lieu
+            $('#button_them').on('click', function () {
+                var malophocphan = $('#malophocphan').val();
+                var masv = $('#masv').val();
+                var trongso = $('#trongso').val();
+                var dcc = $('#dcc').val();
+                var dgk = $('#dgk').val();
+                var dbt = $('#dbt').val();
+                var dth = $('#dth').val();
+                var diemthi = $('#diemthi').val();
+                if ( malophocphan == 'Chọn lớp học'  || masv == 'Chọn sinh viên' || trongso == ''|| dcc == '' || dgk == '' || dbt == '' || dth == '' ||diemthi == ''||trongso <0||trongso >1) {
+                    alert('Vui lòng nhập đầy đủ dữ liệu');
+                } else {
+                    $.ajax({
+                        url: "giaovien-phancong.php",
+                        method: "POST",
+                        data: {
+                            malophocphan:malophocphan,
+                            masv:masv,
+                            trongso:trongso,
+                            dcc:dcc,
+                            dgk:dgk,
+                            dbt:dbt,
+                            dth:dth,
+                            diemthi:diemthi,
+                        },
+                        success: function (data) {
+                            alert("Thêm dữ liệu thành công!");
+                            $('#insert_diem')[0].reset();
+                            load_du_lieu();
+                        }
+                    });
+                }
+            });
+
+            load_du_lieu();
+            //xoa du lieu
+            $(document).on('click', '.del', function () {
+                var newID = $(this).attr("id");
+                if (confirm('Bạn muốn bay màu học sinh này ?')) {
+                    $.ajax({
+                        url: "giaovien-phancong.php",
+                        method: "POST",
+                        data: {newID: newID},
+                        success: function (data) {
+                            load_du_lieu();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </html>

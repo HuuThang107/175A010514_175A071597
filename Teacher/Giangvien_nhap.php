@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,6 +14,15 @@
         <link href="../css/style3.css" rel="stylesheet">
         <link href="../css/style4.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/metisMenu.min.js"></script>
+        <script src="../js/startmin.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap-social.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -53,51 +63,88 @@
                 </div>
             </nav>
 
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="page-header" align="center">Nhập danh sách sinh viên</h3>
-                        </div>
-                        <div class="list-course">
-                            <form name="edit_course">
-                                    <table class="table-form-edit" align="center" bgcolor="#FFFFFF">
-                                        <tr>
-                                            <td width="180" height="50px">Mã sinh viên</td>
-                                            <td width="300"><input type="text" value="" name="masv" size="40"></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="50px">Tên sinh viên</td>
-                                            <td><input type="text" value="" size="40"></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="50px">Lớp</td>
-                                            <td><input type="text" value="" size="40"></td>
-                                        </tr>
-                                        <tr>
-                                            <td height="50px">Giới tính</td>
-                                            <td><input type="radio" > Nam <input type="radio">Nữ</td>
-                                        <tr>
-                                            <td align="center" height="50px" ></td>
-                                            <td><a href="#"><input type="submit" value="Thêm" name="submit"></td>
-                                        </tr>
-                                    </table>
-                            </form>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="col-md-12">
+                <center><h3>Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_sinhvien">
+                    <br>
+                    <label>Tên sinh viên</label>
+                    <input type="text" class="form-control" id="tensv" placeholder="Tên sinh viên">
+                    <br>
+                    <label>Chứng minh thư</label>
+                    <input type="text" class="form-control" id="cmt" placeholder="Chứng minh thư">
+                    <br>
+                    <label>Địa chỉ</label>
+                    <input type="text" class="form-control" id="diachi" placeholder="Địa Chỉ">
+                    <br>
+                    <label>Lớp</label>
+                    <input type="text" class="form-control" id="lop" placeholder="Lớp">
+                    <br>
+                    <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
+                    <br>
+                </form>
+                <br>
+                <div class="table-responsive" id="sinhvien_table">
                 </div>
             </div>
         </div>
-    <script src="../js/jquery.min.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                load_du_lieu();
+                function load_du_lieu() {
+                    $.ajax({
+                        url: "giaovien-sinhvien.php",
+                        method: "POST",
+                        success: function (data) {
+                            $('#sinhvien_table').html(data);
+                        }
+                    });
+                }
+                load_du_lieu();
 
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="../js/metisMenu.min.js"></script>
-
-        <!-- Custom Theme JavaScript -->
-        <script src="../js/startmin.js"></script>
-
+                //Them du lieu
+                $('#button_them').on('click', function () {
+                    var tensv = $('#tensv').val();
+                    var cmt = $('#cmt').val();
+                    var diachi = $('#diachi').val();
+                    var lop = $('#lop').val();
+                    if (tensv == ''  || cmt == '' || diachi == '' || lop == '' ) {
+                        alert('Vui lòng nhập đầy đủ dữ liệu');
+                    } else {
+                        $.ajax({
+                            url: "giaovien-sinhvien.php",
+                            method: "POST",
+                            data: {
+                                tensv:tensv,
+                                cmt:cmt,
+                                diachi:diachi,
+                                lop:lop
+                            },
+                            success: function (data) {
+                                alert("Thêm dữ liệu thành công!");
+                                $('#insert_sinhvien')[0].reset();
+                                load_du_lieu();
+                            }
+                        });
+                    }
+                });
+                load_du_lieu();
+                //xoa du lieu
+                $(document).on('click', '.del', function () {
+                    var newID = $(this).attr("id");
+                    if (confirm('Bạn muốn bay màu học sinh này ?')) {
+                        $.ajax({
+                            url: "giaovien-sinhvien.php",
+                            method: "POST",
+                            data: {newID: newID},
+                            success: function (data) {
+                                load_du_lieu();
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

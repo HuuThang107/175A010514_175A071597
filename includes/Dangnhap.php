@@ -1,4 +1,7 @@
 <?php ob_start() ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,12 +53,6 @@
   </div>
   </form>
 </body>
-</html>
-
-<?php
-session_start();
-?>
-
 <?php
 require_once ("../includes/connection.php");
 
@@ -69,14 +66,14 @@ if (isset($_POST["btn_submit"])) {
     $password = strip_tags($password);
     $password = addslashes($password);
     if ($username == "" || $password =="") {
-        echo "username hoặc password bạn không được để trống!";
+        echo ("username hoặc password bạn không được để trống!") ;
     }else{
         $sql = "select * from taikhoan where tentk = '$username' and matkhau = '$password' ";
 
         $query = mysqli_query($conn,$sql);
         $num_rows = mysqli_num_rows($query);
         if ($num_rows==0) {
-            echo "tên đăng nhập hoặc mật khẩu không đúng !";
+            echo("tên đăng nhập hoặc mật khẩu không đúng !") ;
         }else{
 
             while ( $data = mysqli_fetch_array($query) ) {
@@ -90,7 +87,7 @@ if (isset($_POST["btn_submit"])) {
                 elseif ($data['level']==2){
                     header("location: ../Manager/Quanly_danhsachlop.php");
                 }
-                else{
+                elseif($data['level']==1){
                     header("location: ../Teacher/Giangvien_danhsachsinhvien.php");
                 }
 
@@ -102,3 +99,7 @@ if (isset($_POST["btn_submit"])) {
     }
 }
 ?>
+</html>
+
+
+

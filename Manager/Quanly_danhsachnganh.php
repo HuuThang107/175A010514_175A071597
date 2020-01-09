@@ -78,10 +78,11 @@
         </div>
         </div>
 
-        <div class="container">
+
+        <div class="container" style="margin-left: 220px ">
             <div class="col-md-12">
                 <center><h3>Quản Lý Dữ Liệu</h3></center>
-                <form method="POST" id="insert_nganh">
+                <form method="POST" id="insert_nganhhoc">
 
                     <label>Tên ngành</label>
                     <input type="text" class="form-control" id="tennganh" placeholder="Điền tên ngành">
@@ -91,100 +92,145 @@
                     <br>
                     <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
                 </form>
-                <div id="load_dulieu">
+                <br>
+                <div class="table-responsive" id="nganh_table">
                 </div>
-
             </div>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //Load du lieu
-                function fetch_item_data()
-                {
-                    $.ajax({
-                        url:"quanly-nganh.php",
-                        method:"POST",
-                        success:function(data)
-                        {
-                            $('#load_dulieu').html(data);
-                        }
-                    });
-                }
-                fetch_item_data();
 
-                // Xoa du lieu
-                $(document).on('click','.del_data',function () {
-                    var newID = $(this).data('id_del');
-                    $.ajax({
-                        url:"quanly-nganh.php",
-                        method: "POST",
-                        data:{newID:newID},
-                        success:function(data) {
-                            alert("Xóa dữ liệu thành công!");
-                            fetch_item_data();
-                        }
-                    });
+        <!-- Modal  edit-->
+        <div class="modal fade" id="edit_modal" role="dialog">
+            <div class="modal-dialog">
 
-                });
 
-                //Sua du lieu
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Cập nhật</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" id="edit_nganh">
+                            <div class="form-group">
+                                <label>Tên ngành</label>
+                                <input type="text" class="form-control" id="tennganh" name="tennganh" >
+                            </div>
+                                <br>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <input type="text" class="form-control" id="mota" name="mota" >
+                            </div>
+                                <br>
+                                <input type="hidden" name="manganh" id="manganh">
+                                <input type="submit" name="submit" class="btn btn-info" value="Cập Nhật">
+                                <br>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
 
-                function edit_data(id,text,column_name) {
-                    $.ajax({
-                        url: "quanly-nganh.php",
-                        method: "POST",
-                        data: {id: id, text: text, column_name},
-                        success: function (data) {
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
 
-                            alert("Sửa dữ liệu thành công!");
-                            fetch_item_data();
-                        }
-                    });
-                }
-
-                $(document).on('blur', '.tennganh', function () {
-                    var id = $(this).data('id_ten');
-                    var text = $(this).text();
-                    edit_data(id, text, "tennganh");
-
-                });
-                $(document).on('blur', '.mota', function () {
-                    var id = $(this).data('id_mt');
-                    var text = $(this).text();
-                    edit_data(id, text, "mota");
-
-                });
-
-                //Them du lieu
-                $('#button_them').on('click',function () {
-                    var tennganh = $('#tennganh').val();
-                    var mota = $('#mota').val();
-                    if(tennganh == '' || mota == '' )
-                    {
-                        alert('Vui lòng nhập đầy đủ dữ liệu');
-                    }
-                    else {
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    load_du_lieu();
+                    function load_du_lieu() {
                         $.ajax({
                             url:"quanly-nganh.php",
-                            method: "POST",
-                            data:{tennganh:tennganh,mota:mota},
-                            success:function(data) {
-
-                                alert("Thêm dữ liệu thành công!");
-
-                                $('#insert_nganh')[0].reset();
-                                fetch_item_data();
+                            method:"POST",
+                            success:function (data) {
+                                $('#nganh_table').html(data);
                             }
                         });
                     }
+                    load_du_lieu();
+                    $(document).on('click','.edit',function () {
+                        var manganh = $(this).attr("id");
+                        $.ajax({
+                            url:"edit-nganh.php",
+                            method: "POST",
+                            data:{manganh:manganh},
+                            dataType:"json",
+                            success:function(data) {
+                                $('#tennganh').val(data.tennganh);
+                                $('#mota').val(data.mota);
+                                $('#manganh').val(data.manganh)
+                                $('#edit_modal').modal('show');
+                            }
+                        });
+                    });
+                    load_du_lieu();
+                    $('#edit_nganh').on('submit',function (event) {
+                        event.preventDefault();
+                        if($('#tennganh').val()=='' ){
+                            alert("Vui lòng nhập đủ thông tin !");
+                        }else if($('#mota').val()==''){
+                            alert("Vui lòng nhập đầy đủ thông tin!")
+                        }
+                        else {
+                            $.ajax({
+                                url:"update-nganh.php",
+                                method:"POST",
+                                data:$('#edit_nganh').serialize(),
+                                success:function(data){
+                                    $('#edit_nganh')[0].reset();
+                                    $('#edit_nganh').modal('hide');
+                                    $('#nganh_table').html(data);
+                                    load_du_lieu();
+                                }
+                            });
+                        }
+
+                    });
+                    load_du_lieu();
+
+
+                    //Them du lieu
+                    $('#button_them').on('click',function () {
+                        var tennganh = $('#tennganh').val();
+                        var mota = $('#mota').val();
+                        if(tennganh == '' || mota == '' )
+                        {
+                            alert('Vui lòng nhập đầy đủ dữ liệu');
+                        }
+                        else {
+                            $.ajax({
+                                url:"quanly-nganh.php",
+                                method: "POST",
+                                data:{tennganh:tennganh,mota:mota},
+                                success:function(data) {
+                                    alert("Thêm dữ liệu thành công!");
+                                    $('#insert_nganhhoc')[0].reset();
+                                    load_du_lieu();
+                                }
+                            });
+                        }
+                    });
+                    load_du_lieu();
+                    //xoa du lieu
+                    $(document).on('click','.del',function () {
+                        var newID = $(this).attr("id");
+                        if(confirm('Bạn muốn bay màu nganh này ?')){
+                            $.ajax({
+                                url:"quanly-nganh.php",
+                                method: "POST",
+                                data:{newID:newID},
+                                success:function(data) {
+                                    load_du_lieu();
+
+                                }
+                            });
+                        }
+                    });
                 });
-
-
-
-
-            });
-
-        </script>
+            </script>
     </body>
 </html>
+
+
+
+
+
 

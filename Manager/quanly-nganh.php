@@ -14,14 +14,17 @@ if(isset($_POST['tennganh']))
 
 
 //Sua du lieu
-if(isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $text = $_POST['text'];
-    $column_name = $_POST['column_name'];
-    $update = "UPDATE nganhhoc SET $column_name = '$text' where manganh = '$id' ";
-    $up = mysqli_query($conn, $update);
+if(isset($_POST['manganh']))
+{
+    $id = $_POST['manganh'];
+    $query = "SELECT * FROM nganhhoc where manganh = '$id'";
+    $result = mysqli_query($conn,$query);
+    while ($row = mysqli_fetch_array($result)){
+        $output['tennganh'] = $row['tennganh'];
+        $output['mota'] = $row['mota'];
+    }
+    echo json_encode($output);
 }
-
 //Xoa du lieu
 
 if(isset($_POST['newID'])) {
@@ -32,31 +35,38 @@ if(isset($_POST['newID'])) {
 
 
 //Load du lieu
-$output = '';
-$query = "SELECT * FROM nganhhoc ORDER BY manganh DESC";
+$query = "SELECT * FROM nganhhoc";
 $result = mysqli_query($conn, $query);
-$output = '
-<br />
-<h3 align="center">Danh sách</h3>
-<table class="table table-bordered table-striped">
- <tr>
-  <th width="45%">Tên ngành học</th>
-  <th width="45%">Mô tả</th>
-  <th width="10%">Quản lý</th>
-  
- </tr>
+$number_of_rows = mysqli_num_rows($result);
+$output = '';
+$output .='<table class ="table table-bordered table-triped">
+<tr>
+   <th>Thứ tự</th>
+   <th>Tên Ngành</th>
+   <th>Mô tả</th>
+   <th>Sửa</th>
+   <th>Xóa</th>
+</tr>
 ';
-while($row = mysqli_fetch_array($result))
-{
-    $output .= '
- <tr>
-  <td class="tennganh" data-id_ten='.$row['manganh'].' contenteditable>'.$row["tennganh"].'</td>
-  <td class="mota" data-id_mt='.$row['manganh'].' contenteditable>'.$row["mota"].'</td>
-  <td><input type="submit" data-id_del='.$row['manganh'].' id="xoa" class="btn btn-sm btn-danger del_data" name="xoa_dulieu" value="X"/input></td>
- </tr>
- ';
-
+if($number_of_rows>0){
+    $count = 0;
+    while($row = mysqli_fetch_array($result)){
+        $count ++;
+        $output.='<tr>
+            <td>'.$count.'</td>
+            <td>'.$row['tennganh'].'</td>
+            <td>'.$row['mota'].'</td>
+            <td><button type="button"  class="btn btn-warning btn-xs edit " id="'.$row['manganh'].'">Cập nhật</button></td>
+            <td><button type="button"  class="btn btn-danger btn-xs del " id="'.$row['manganh'].'">Bay màu</button></td>
+</tr>';
+    }
 }
-$output .= '</table>';
+else{
+    $output.='<tr>
+            <td colspan="5" align="center">Chưa có dữ liệu</td>
+</tr>';
+}
+$output.='</table>';
 echo $output;
+
 ?>

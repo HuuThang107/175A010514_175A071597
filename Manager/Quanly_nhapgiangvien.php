@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -90,104 +93,66 @@
             <br>
             <label>Số điện thoại</label>
             <input type="text" class="form-control" id="sdt" placeholder="Điền số điện thoại giáo viên">
-            <br>
+                <br>
             <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
+                <br>
             </form>
-            <div id="load_dulieu">
-            </div>
+            <div class="table-responsive" id="gv_table">
 
         </div>
     </div>
         <script type="text/javascript">
-            $(document).ready(function () {
-                //Load du lieu
-                function fetch_item_data()
-                {
-                    $.ajax({
-                        url:"quanly-giaovien.php",
-                        method:"POST",
-                        success:function(data)
-                        {
-                            $('#load_dulieu').html(data);
-                        }
-                    });
-                }
-                fetch_item_data();
 
-                // Xoa du lieu
-                $(document).on('click','.del_data',function () {
-                    var magv = $(this).data('id_del');
-                    $.ajax({
-                        url:"quanly-giaovien.php",
-                        method: "POST",
-                        data:{magv:magv},
-                        success:function(data) {
-                            alert("Xóa dữ liệu thành công!");
-                            fetch_item_data();
-                        }
-                    });
+                $(document).ready(function () {
+                    load_du_lieu();
 
-                });
-
-                //Sua du lieu
-
-                function edit_data(id,text,column_name) {
-                    $.ajax({
-                        url: "quanly-giaovien.php",
-                        method: "POST",
-                        data: {id: id, text: text, column_name},
-                        success: function (data) {
-
-                            alert("Sửa dữ liệu thành công!");
-                            fetch_item_data();
-                        }
-                    });
-                }
-
-                    $(document).on('blur', '.tengv', function () {
-                        var id = $(this).data('id_ten');
-                        var text = $(this).text();
-                        edit_data(id, text, "tengv");
-
-                    });
-                    $(document).on('blur', '.diachi', function () {
-                        var id = $(this).data('id_dc');
-                        var text = $(this).text();
-                        edit_data(id, text, "diachi");
-
-                    });
-                    $(document).on('blur', '.sdt', function () {
-                        var id = $(this).data('id_sdt');
-                        var text = $(this).text();
-                        edit_data(id, text, "sdt");
-
-                    });
-
-                //Them du lieu
-                $('#button_them').on('click',function () {
-                    var tengv = $('#tengv').val();
-                    var diachi = $('#diachi').val();
-                    var sdt = $('#sdt').val();
-                    if(tengv == '' || diachi == '' || sdt == '')
-                    {
-                        alert('Vui lòng nhập đầy đủ dữ liệu');
-                    }
-                    else {
+                    function load_du_lieu() {
                         $.ajax({
-                            url:"quanly-giaovien.php",
+                            url: "quanly-giaovien.php",
                             method: "POST",
-                            data:{tengv:tengv,diachi:diachi,sdt:sdt},
-                            success:function(data) {
-
-                                alert("Thêm dữ liệu thành công!");
-
-                                $('#insert_gv')[0].reset();
-                                fetch_item_data();
+                            success: function (data) {
+                                $('#gv_table').html(data);
                             }
                         });
                     }
+
+                    load_du_lieu();
+                    //Them du lieu
+                    $('#button_them').on('click', function () {
+                        var tengv = $('#tengv').val();
+                        var diachi = $('#diachi').val();
+                        var sdt = $('#sdt').val();
+                        if (tengv == '' || diachi == '' || sdt == '' ) {
+                            alert('Vui lòng nhập đầy đủ dữ liệu');
+                        } else {
+                            $.ajax({
+                                url: "quanly-giaovien.php",
+                                method: "POST",
+                                data: {tengv: tengv, diachi: diachi, sdt: sdt},
+                                success: function (data) {
+
+                                    alert("Thêm dữ liệu thành công!");
+
+                                    $('#insert_gv')[0].reset();
+                                    load_du_lieu()
+                                }
+                            });
+                        }
+                    });
+                    $(document).on('click', '.del', function () {
+                        var newID = $(this).attr("id");
+                        if (confirm('Bạn muốn bay màu giáo viên này ?')) {
+                            $.ajax({
+                                url: "quanly-giaovien.php",
+                                method: "POST",
+                                data: {newID: newID},
+                                success: function (data) {
+                                    load_du_lieu();
+                                }
+                            });
+                        }
+                    });
                 });
-            });
         </script>
     </body>
 </html>
