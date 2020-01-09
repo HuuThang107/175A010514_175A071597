@@ -84,7 +84,7 @@ function fill_monhoc($conn)
                                 <a href="Quanly_phancong.php"><i class="fa fa-address-card"></i>   Phân công giảng dạy</a>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="../includes/Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
                             
                         </ul>
@@ -94,30 +94,30 @@ function fill_monhoc($conn)
         </div>
         <div class="container">
             <div class="col-md-12">
-                <center><h3>Quản Lý Dữ Liệu</h3></center>
-                <form method="POST" id="insert_lophocphan">
+                <center><h3 style="margin-top: 70px">Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_lophocphan" style="width: 500px; margin-left: 300px">
 
-                    <label>Tên lớp học phần</label>
-                    <input type="text" class="form-control" id="tenlophocphan" placeholder="Điền tên lớp học phần">
+                    <label style="margin-top: 20px">Tên lớp học phần</label>
+                    <input type="text" class="form-control" id="tenlophocphan" placeholder="Điền tên lớp học phần" style="margin-left: 140px">
                     <br>
                     <label>Chọn môn</label>
-                    <select class="form-control" id="mamon" name="mamon">
+                    <select class="form-control" id="mamon" name="mamon" style="margin-left: 140px">
                         <option value="">Chọn môn học</option>
                         <?php echo fill_monhoc($conn); ?>
                     </select>
                     <br>
                     <label>Chọn giáo viên</label>
-                    <select class="form-control" id="magv" name="tengv" >
+                    <select class="form-control" id="magv" name="tengv" style="margin-left: 140px">
                     </select>
                     <br>
                     <label>Năm học</label>
-                    <input type="text" class="form-control" id="namhoc" placeholder="Năm học">
+                    <input type="text" class="form-control" id="namhoc" placeholder="Năm học" style="margin-left: 140px">
                     <br>
                     <label>Học kì</label>
-                    <input type="text" class="form-control" id="hocki" placeholder="Học kì">
+                    <input type="text" class="form-control" id="hocki" placeholder="Học kì" style="margin-left: 140px">
                     <br>
                     <label>Giai đoạn</label>
-                    <input type="text" class="form-control" id="giaidoan" placeholder="Giai đoạn">
+                    <input type="text" class="form-control" id="giaidoan" placeholder="Giai đoạn" style="margin-left: 140px">
                     <br>
                     <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
                     <br>

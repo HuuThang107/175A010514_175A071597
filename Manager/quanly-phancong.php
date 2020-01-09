@@ -25,14 +25,14 @@ $query = "SELECT giaovien_mon.magv,tenmon,tengv,ghichu FROM giaovien_mon,giaovie
 $result = mysqli_query($conn, $query);
 $number_of_rows = mysqli_num_rows($result);
 $output = '';
-$output .= '<table class ="table table-bordered table-triped">
+$output .= '<table class ="table table-bordered table-triped" style = "margin-left: 200px ; width: 900px">
 <tr>
-   <th>Thứ tự</th>
-   <th>Tên môn</th>
-   <th>Tên giáo viên phụ trách</th>
-   <th>Ghi chú</th>
-   <th>Sửa</th>
-   <th>Xóa</th>
+   <td align = "center">Thứ tự</td>
+   <td align = "center">Tên môn</td>
+   <td align = "center">Tên giáo viên phụ trách</td>
+   <td align = "center">Ghi chú</td>
+   <td align = "center">Sửa</td>
+   <td align = "center">Xóa</td>
 </tr>
 ';
 if ($number_of_rows > 0) {
@@ -40,12 +40,12 @@ if ($number_of_rows > 0) {
     while ($row = mysqli_fetch_array($result)) {
         $count++;
         $output .= '<tr>
-            <td>' . $count . '</td>
-            <td>' . $row['tenmon'] . '</td>
-            <td>' . $row['tengv'] . '</td>
-            <td>' . $row['ghichu'] . '</td>
-            <td><button type="button"  class="btn btn-warning btn-xs edit " id="'. $row['magv'] .'">Cập nhật</button></td>
-            <td><button type="button"  class="btn btn-danger btn-xs del " id="'. $row['magv'].'" >Bay màu</button></td>
+            <td align = "center">' . $count . '</td>
+            <td align = "center">' . $row['tenmon'] . '</td>
+            <td align = "center">' . $row['tengv'] . '</td>
+            <td align = "center">' . $row['ghichu'] . '</td>
+            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="'. $row['magv'] .'">Cập nhật</button></td>
+            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="'. $row['magv'].'" >Bay màu</button></td>
 </tr>';
     }
 } else {

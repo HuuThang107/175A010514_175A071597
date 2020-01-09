@@ -61,7 +61,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
                             
                         </ul>

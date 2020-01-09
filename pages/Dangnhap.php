@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/font-awesome.min.css">
 </head>
 <body>
+  <a href="Trangchu.php">Trở về</a>
   <form method="POST" action="Dangnhap.php">
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
@@ -57,7 +58,7 @@ session_start();
 ?>
 
 <?php
-require_once ("../includes/connection/connection.php");
+require_once ("../includes/connection.php");
 
 if (isset($_POST["btn_submit"])) {
 

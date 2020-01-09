@@ -32,19 +32,19 @@ $number_of_rows = mysqli_num_rows($result);
 $output = '';
 $output .= '<table class ="table table-bordered table-triped">
 <tr>
-   <th>Thứ tự</th>
-   <th>Tên Lớp học phần</th>
-   <th>Tên sinh viên</th>
-   <th>Điểm chuyên cần</th>
-   <th>Điểm giữa kì</th>
-   <th>Điểm bài tập</th>
-   <th>Điểm thực hành</th>
-   <th>Trọng số điểm quá trình</th>
-   <th>Điểm thi</th>
-   <th>Điểm quá trình</th>
-   <th>Điểm tổng kết</th>
-   <th>Sửa</th>
-   <th>Xóa</th>
+   <td align = "center">Thứ tự</td>
+   <td align = "center">Tên Lớp học phần</td>
+   <td align = "center">Tên sinh viên</td>
+   <td align = "center">Điểm chuyên cần</td>
+   <td align = "center">Điểm giữa kì</td>
+   <td align = "center">Điểm bài tập</td>
+   <td align = "center">Điểm thực hành</td>
+   <td align = "center">Trọng số điểm quá trình</td>
+   <td align = "center">Điểm thi</td>
+   <td align = "center">Điểm quá trình</td>
+   <td align = "center">Điểm tổng kết</td>
+   <td align = "center">Sửa</td>
+   <td align = "center">Xóa</td>
 </tr>
 ';
 if ($number_of_rows > 0) {
@@ -52,19 +52,19 @@ if ($number_of_rows > 0) {
     while ($row = mysqli_fetch_array($result)) {
         $count++;
         $output .= '<tr>
-            <td>' . $count . '</td>
-            <td>' . $row['tenlophocphan'] . '</td>
-            <td>' . $row['tensv'] . '</td>
-            <td>' . $row['dcc'] . '</td>
-            <td>' . $row['dgk'] . '</td>
-            <td>' . $row['dbt'] . '</td>
-            <td>' . $row['dth'] . '</td>
-            <td>' . $row['trongso'] . '</td>
-            <td>' . $row['diemthi'] . '</td>
-            <td>' . $row['dqt'] . '</td>
-            <td>' . $row['dtk'] . '</td>
-            <td><button type="button"  class="btn btn-warning btn-xs edit " id="'. $row['masv'] .'">Cập nhật</button></td>
-            <td><button type="button"  class="btn btn-danger btn-xs del " id="'. $row['masv'].'" >Bay màu</button></td>
+            <td align = "center">' . $count . '</td>
+            <td align = "center">' . $row['tenlophocphan'] . '</td>
+            <td align = "center">' . $row['tensv'] . '</td>
+            <td align = "center">' . $row['dcc'] . '</td>
+            <td align = "center">' . $row['dgk'] . '</td>
+            <td align = "center">' . $row['dbt'] . '</td>
+            <td align = "center">' . $row['dth'] . '</td>
+            <td align = "center">' . $row['trongso'] . '</td>
+            <td align = "center">' . $row['diemthi'] . '</td>
+            <td align = "center">' . $row['dqt'] . '</td>
+            <td align = "center">' . $row['dtk'] . '</td>
+            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="'. $row['masv'] .'">Cập nhật</button></td>
+            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="'. $row['masv'].'" >Bay màu</button></td>
 </tr>';
     }
 } else {

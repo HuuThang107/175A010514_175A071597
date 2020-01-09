@@ -59,7 +59,7 @@ function fill_lophoc($conn)
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="../includes/Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
                             
                         </ul>

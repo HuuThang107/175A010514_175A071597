@@ -32,13 +32,13 @@ $number_of_rows = mysqli_num_rows($result);
 $output = '';
 $output .= '<table class ="table table-bordered table-triped">
 <tr>
-   <th>Thứ tự</th>
-   <th>Tên sinh viên</th>
-   <th>Chứng minh thư</th>
-   <th>Địa chỉ</th>
-   <th>Lớp</th>
-   <th>Sửa</th>
-   <th>Xóa</th>
+   <td align = "center">Thứ tự</td>
+   <td align ="center">Tên sinh viên</td>
+   <td align ="center">Chứng minh thư</td>
+   <td align ="center">Địa chỉ</td>
+   <td align ="center">Lớp</td>
+   <td align ="center">Sửa</td>
+   <td align ="center">Xóa</td>
 </tr>
 ';
 if ($number_of_rows > 0) {
@@ -46,13 +46,13 @@ if ($number_of_rows > 0) {
     while ($row = mysqli_fetch_array($result)) {
         $count++;
         $output .= '<tr>
-            <td>' . $count . '</td>
-            <td>' . $row['tensv'] . '</td>
-            <td>' . $row['cmt'] . '</td>
-            <td>' . $row['diachi'] . '</td>
-            <td>' . $row['lop'] . '</td>
-            <td><button type="button"  class="btn btn-warning btn-xs edit " id="' . $row['masv'] . '">Cập nhật</button></td>
-            <td><button type="button"  class="btn btn-danger btn-xs del " id="' . $row['masv'] . '">Bay màu</button></td>
+            <td align ="center">' . $count . '</td>
+            <td align ="center">' . $row['tensv'] . '</td>
+            <td align ="center">' . $row['cmt'] . '</td>
+            <td align ="center">' . $row['diachi'] . '</td>
+            <td align ="center">' . $row['lop'] . '</td>
+            <td align ="center"><button type="button"  class="btn btn-warning btn-xs edit " id="' . $row['masv'] . '">Cập nhật</button></td>
+            <td align ="center"><button type="button"  class="btn btn-danger btn-xs del " id="' . $row['masv'] . '">Bay màu</button></td>
 </tr>';
     }
 } else {

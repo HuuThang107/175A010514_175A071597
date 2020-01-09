@@ -44,17 +44,17 @@ $query = "SELECT malophocphan,tenlophocphan,tenmon,tengv,namhoc,hocki,giaidoan F
 $result = mysqli_query($conn, $query);
 $number_of_rows = mysqli_num_rows($result);
 $output = '';
-$output .= '<table class ="table table-bordered table-triped">
+$output .= '<table class ="table table-bordered table-triped" style = "width : 900px; margin-left: 150px">
 <tr>
-   <th>Thứ tự</th>
-   <th>Tên Lớp học phần</th>
-   <th>Tên môn</th>
-   <th>Tên giáo viên phụ trách</th>
-   <th>Năm học</th>
-   <th>Học kì</th>
-   <th>Giai đoạn</th>
-   <th>Sửa</th>
-   <th>Xóa</th>
+   <td align = "center">Thứ tự</td>
+   <td align = "center">Tên Lớp học phần</td>
+   <td align = "center">Tên môn</td>
+   <td align = "center">Tên giáo viên phụ trách</td>
+   <td align = "center">Năm học</td>
+   <td align = "center">Học kì</td>
+   <td align = "center">Giai đoạn</td>
+   <td align = "center">Sửa</td>
+   <td align = "center">Xóa</td>
 </tr>
 ';
 if ($number_of_rows > 0) {
@@ -62,15 +62,15 @@ if ($number_of_rows > 0) {
     while ($row = mysqli_fetch_array($result)) {
         $count++;
         $output .= '<tr>
-            <td>' . $count . '</td>
-            <td>' . $row['tenlophocphan'] . '</td>
-            <td>' . $row['tenmon'] . '</td>
-            <td>' . $row['tengv'] . '</td>
-            <td>' . $row['namhoc'] . '</td>
-            <td>' . $row['hocki'] . '</td>
-            <td>' . $row['giaidoan'] . '</td>
-            <td><button type="button"  class="btn btn-warning btn-xs edit " id="' . $row['malophocphan'] . '">Cập nhật</button></td>
-            <td><button type="button"  class="btn btn-danger btn-xs del " id="' . $row['malophocphan'] . '">Bay màu</button></td>
+            <td align = "center">' . $count . '</td>
+            <td align = "center">' . $row['tenlophocphan'] . '</td>
+            <td align = "center">' . $row['tenmon'] . '</td>
+            <td align = "center">' . $row['tengv'] . '</td>
+            <td align = "center">' . $row['namhoc'] . '</td>
+            <td align = "center">' . $row['hocki'] . '</td>
+            <td align = "center">' . $row['giaidoan'] . '</td>
+            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="' . $row['malophocphan'] . '">Cập nhật</button></td>
+            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="' . $row['malophocphan'] . '">Bay màu</button></td>
 </tr>';
     }
 } else {

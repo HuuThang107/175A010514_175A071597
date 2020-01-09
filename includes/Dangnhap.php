@@ -11,6 +11,7 @@ session_start();
   <link rel="stylesheet" href="../css/font-awesome.min.css">
 </head>
 <body>
+  <a href="Trangchu.php">Quay lại</a>
   <form method="POST" action="Dangnhap.php">
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">

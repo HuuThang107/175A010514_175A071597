@@ -55,7 +55,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="../includes/Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
                             
                         </ul>
@@ -65,22 +65,22 @@
 
         <div class="container">
             <div class="col-md-12">
-                <center><h3>Quản Lý Dữ Liệu</h3></center>
-                <form method="POST" id="insert_sinhvien">
+                <center><h3 style="margin-top: 80px">Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_sinhvien" style="margin-left: 320px; width: 500px">
                     <br>
-                    <label>Tên sinh viên</label>
-                    <input type="text" class="form-control" id="tensv" placeholder="Tên sinh viên">
+                    <label style="">Tên sinh viên</label>
+                    <input type="text" class="form-control" id="tensv" placeholder="Tên sinh viên" style="margin-left: 120px">
                     <br>
                     <label>Chứng minh thư</label>
-                    <input type="text" class="form-control" id="cmt" placeholder="Chứng minh thư">
+                    <input type="text" class="form-control" id="cmt" placeholder="Chứng minh thư" style="margin-left: 120px">
                     <br>
                     <label>Địa chỉ</label>
-                    <input type="text" class="form-control" id="diachi" placeholder="Địa Chỉ">
+                    <input type="text" class="form-control" id="diachi" placeholder="Địa Chỉ" style="margin-left: 120px">
                     <br>
                     <label>Lớp</label>
-                    <input type="text" class="form-control" id="lop" placeholder="Lớp">
+                    <input type="text" class="form-control" id="lop" placeholder="Lớp" style="margin-left: 120px">
                     <br>
-                    <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
+                    <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success" style="margin-left: 100px"></center>
                     <br>
                 </form>
                 <br>

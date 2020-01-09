@@ -73,7 +73,7 @@ function fill_sinhvien($conn)
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="../includes/Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
                             
                         </ul>
@@ -83,38 +83,38 @@ function fill_sinhvien($conn)
         </div>
         </div>
         <div class="container">
-            <div class="col-md-12">
-                <center><h3>Quản Lý Dữ Liệu</h3></center>
-                <form method="POST" id="insert_diem" >
-                    <label>Nhập trọng số điểm quá trình</label>
-                    <input type="text" class="form-control" id="trongso" placeholder="Nhập trọng số">
+            <div class="col-md-12" >
+                <center><h3 style="margin-top: 70px">Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_diem" style="width: 500px ; margin-left: 300px">
+                    <label style="margin-top: 10px">Nhập trọng số điểm quá trình</label>
+                    <input type="text" class="form-control" id="trongso" placeholder="Nhập trọng số" style="margin-left: 120px">
                     <br>
                     <label>Chọn lớp</label>
-                    <select class="form-control" id="malophocphan" name="malophocphan">
+                    <select class="form-control" id="malophocphan" name="malophocphan" style="margin-left: 120px">
                         <option value="">Chọn lớp học</option>
                         <?php echo fill_lophoc($conn); ?>
                     </select>
                     <br>
                     <label>Chọn sinh viên</label>
-                    <select class="form-control" id="masv" name="masv">
+                    <select class="form-control" id="masv" name="masv" style="margin-left: 120px">
                         <option value="">Chọn sinh viên</option>
                         <?php echo fill_sinhvien($conn); ?>
                     </select>
                     <br>
                     <label>Điểm chuyên cần</label>
-                    <input type="text" class="form-control" id="dcc" placeholder="Điểm chuyên cần">
+                    <input type="text" class="form-control" id="dcc" placeholder="Điểm chuyên cần" style="margin-left: 120px">
                     <br>
                     <label>Điểm giữa kì</label>
-                    <input type="text" class="form-control" id="dgk" placeholder="Điểm giữa kì">
+                    <input type="text" class="form-control" id="dgk" placeholder="Điểm giữa kì" style="margin-left: 120px">
                     <br>
                     <label>Điểm bài tập</label>
-                    <input type="text" class="form-control" id="dbt" placeholder="Điểm bài tập">
+                    <input type="text" class="form-control" id="dbt" placeholder="Điểm bài tập" style="margin-left: 120px">
                     <br>
                     <label>Điểm thực hành</label>
-                    <input type="text" class="form-control" id="dth" placeholder="Điểm thực hành">
+                    <input type="text" class="form-control" id="dth" placeholder="Điểm thực hành" style="margin-left: 120px">
                     <br>
                     <label>Điểm Thi</label>
-                    <input type="text" class="form-control" id="diemthi" placeholder="Điểm thi hết môn">
+                    <input type="text" class="form-control" id="diemthi" placeholder="Điểm thi hết môn" style="margin-left: 120px">
                     <br>
                     <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
                     <br>

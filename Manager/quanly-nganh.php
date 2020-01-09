@@ -39,13 +39,13 @@ $query = "SELECT * FROM nganhhoc";
 $result = mysqli_query($conn, $query);
 $number_of_rows = mysqli_num_rows($result);
 $output = '';
-$output .='<table class ="table table-bordered table-triped">
+$output .='<table class ="table table-bordered table-triped" style = "width : 900px ; margin-left: 200px">
 <tr>
-   <th>Thứ tự</th>
-   <th>Tên Ngành</th>
-   <th>Mô tả</th>
-   <th>Sửa</th>
-   <th>Xóa</th>
+   <td align = "center" width = "200px">Thứ tự</td>
+   <td align = "center" width = "200px">Tên Ngành</td>
+   <td align = "center" width = "200px">Mô tả</td>
+   <td align = "center" width = "70px">Sửa</td>
+   <td align = "center" width = "70px">Xóa</td>
 </tr>
 ';
 if($number_of_rows>0){
@@ -53,11 +53,11 @@ if($number_of_rows>0){
     while($row = mysqli_fetch_array($result)){
         $count ++;
         $output.='<tr>
-            <td>'.$count.'</td>
-            <td>'.$row['tennganh'].'</td>
-            <td>'.$row['mota'].'</td>
-            <td><button type="button"  class="btn btn-warning btn-xs edit " id="'.$row['manganh'].'">Cập nhật</button></td>
-            <td><button type="button"  class="btn btn-danger btn-xs del " id="'.$row['manganh'].'">Bay màu</button></td>
+            <td align = "center">'.$count.'</td>
+            <td align = "center">'.$row['tennganh'].'</td>
+            <td align = "center">'.$row['mota'].'</td>
+            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="'.$row['manganh'].'">Cập nhật</button></td>
+            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="'.$row['manganh'].'">Bay màu</button></td>
 </tr>';
     }
 }

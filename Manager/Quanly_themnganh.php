@@ -51,10 +51,10 @@ function fill_nganhhoc($conn)
                                 <a href="#" class="active"><i class="fa fa-book"></i>   Ngành học</a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="Quanly_danhsachnganh.php"><i class="fa fa-list"></i> Quản lý ngành học</a>
+                                        <a href="Quanly_danhsachnganh.php"><i class="fa fa-list"></i> Danh sách các ngành</a>
                                     </li>
                                     <li>
-                                        <a href="Quanly_themnganh.php"><i class="fa fa-plus-square"></i> Quản lý môn học</a>
+                                        <a href="Quanly_themnganh.php"><i class="fa fa-plus-square"></i> Quản lý ngành học</a>
                                     </li>
                                 </ul>
                             </li>
@@ -84,7 +84,7 @@ function fill_nganhhoc($conn)
                                 <a href="Quanly_phancong"><i class="fa fa-address-card"></i>   Phân công giảng dạy</a>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="../includes/Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
 
                         </ul>
@@ -95,14 +95,13 @@ function fill_nganhhoc($conn)
 
             <div class="container">
                 <div class="col-md-12">
-                    <center><h3>Quản Lý Dữ Liệu</h3></center>
-                    <form method="POST" id="insert_monhoc">
-
+                    <center><h3 style="margin-top: 70px">Quản Lý Dữ Liệu</h3></center>
+                    <form method="POST" id="insert_monhoc" style="width: 500px; margin-left: 300px">
                         <label>Tên môn học</label>
-                        <input type="text" class="form-control" id="tenmon" placeholder="Điền tên môn học">
+                        <input type="text" class="form-control" id="tenmon" placeholder="Điền tên môn học" style="margin-left: 120px">
                         <br>
                         <label>Chọn ngành</label>
-                        <select class="form-control" id="nganh" name="tennganh">
+                        <select class="form-control" id="nganh" name="tennganh" style="margin-left: 120px">
                             <option value="">Chọn ngành học</option>
                             <?php echo fill_nganhhoc($conn); ?>
                         </select>

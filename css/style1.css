@@ -96,3 +96,9 @@ body {
     right: 0;
     left: auto;
 }
+.form-control{
+    width: 500px;
+}
+label{
+ text-align: center;
+}

@@ -72,7 +72,7 @@
                                 <a href="Quanly_phancong.php"><i class="fa fa-address-card"></i>   Phân công giảng dạy</a>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="../includes/Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
                             
                         </ul>
@@ -82,17 +82,16 @@
         </div>
     <div class="container">
         <div class="col-md-12">
-            <center><h3>Quản Lý Dữ Liệu</h3></center>
-            <form method="POST" id="insert_gv">
-
+            <center><h3 style="margin-top: 70px">Quản Lý Dữ Liệu</h3></center>
+            <form method="POST" id="insert_gv" style="width: 500px; margin-left: 300px">
             <label>Tên giáo viên</label>
-            <input type="text" class="form-control" id="tengv" placeholder="Điền tên giáo viên">
+            <input type="text" class="form-control" id="tengv" placeholder="Điền tên giáo viên" style="margin-left: 120px">
             <br>
             <label>Địa chỉ</label>
-            <input type="text" class="form-control" id="diachi" placeholder="Điền địa chỉ giáo viên">
+            <input type="text" class="form-control" id="diachi" placeholder="Điền địa chỉ giáo viên" style="margin-left: 120px">
             <br>
             <label>Số điện thoại</label>
-            <input type="text" class="form-control" id="sdt" placeholder="Điền số điện thoại giáo viên">
+            <input type="text" class="form-control" id="sdt" placeholder="Điền số điện thoại giáo viên" style="margin-left: 120px">
                 <br>
             <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
                 <br>

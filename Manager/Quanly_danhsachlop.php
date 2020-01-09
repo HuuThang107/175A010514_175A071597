@@ -96,7 +96,7 @@ function fill_giaovien($conn)
                                 <a href="Quanly_phancong"><i class="fa fa-address-card"></i>   Phân công giảng dạy</a>
                             </li>
                             <li>
-                                <a href="#" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
+                                <a href="../includes/Dangnhap.php" class="active"><i class="fa fa-sign-out"></i>    Đăng xuất</a>
                             </li>
 
                         </ul>
@@ -106,22 +106,22 @@ function fill_giaovien($conn)
         </div>
         <div class="container">
             <div class="col-md-12">
-                <center><h3>Quản Lý Dữ Liệu</h3></center>
-                <form method="POST" id="insert_gv_mon" >
+                <center><h3 style="margin-top: 70px">Quản Lý Dữ Liệu</h3></center>
+                <form method="POST" id="insert_gv_mon" style="width: 500px; margin-left: 300px">
                     <label>Chọn môn học</label>
-                    <select class="form-control" id="mamon" name="mamon">
+                    <select class="form-control" id="mamon" name="mamon" style="margin-left: 120px">
                         <option value="">Chọn môn học</option>
                         <?php echo fill_monhoc($conn); ?>
                     </select>
                     <br>
                     <label>Chọn giáo viên</label>
-                    <select class="form-control" id="magv" name="magv">
+                    <select class="form-control" id="magv" name="magv" style="margin-left: 120px">
                         <option value="">Chọn giáo viên</option>
                         <?php echo fill_giaovien($conn); ?>
                     </select>
                     <br>
                     <label>Ghi chú</label>
-                    <input type="text" class="form-control" id="ghichu" placeholder="Ghi chú phân công">
+                    <input type="text" class="form-control" id="ghichu" placeholder="Ghi chú phân công" style="margin-left: 120px">
                     <br>
                     <center><input type="button" name="insert_data" id="button_them" value="Thêm" class="btn btn-success"></center>
                     <br>
