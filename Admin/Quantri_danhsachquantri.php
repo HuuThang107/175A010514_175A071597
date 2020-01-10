@@ -210,7 +210,7 @@
                     //xoa du lieu
                     $(document).on('click','.del',function () {
                         var newID = $(this).attr("id");
-                        if(confirm('Bạn muốn bay màu ngành này ?')){
+                        if(confirm('Bạn muốn bay màu người này ?')){
                             $.ajax({
                                 url:"quantri-taikhoan.php",
                                 method: "POST",

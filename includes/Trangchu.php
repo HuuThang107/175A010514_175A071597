@@ -9,7 +9,7 @@
 </head>
 <body>
 	<header>
-			<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #ff8936";>
+			<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #36deff";>
 			  <a class="navbar-brand" href="Trangchu.php"><img src="../img/logo.png" alt="" width="350px" height="70px" style="margin-left: 15px"></a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
 
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <form class="form-inline my-2 my-lg-0">
-			      <button class="btn btn-warning btn-sm" type="button" style="font-size: 18px; margin-left: 10px"><a href="Tracuudiem.php">Tra cứu điểm</a></button>
+			      <button class="btn btn-warning btn-sm" type="button" style="font-size: 18px; margin-left: 200px"><a href="Tracuudiem.php">Tra cứu điểm</a></button>
 				  <button type="button" class="btn btn-warning btn-sm" style="font-size: 18px; margin-left: 20px; color: red" ><a href="Dangnhap.php">Đăng nhập</a></button>
 			    </form>
 			  </div> 
@@ -56,45 +56,25 @@
 				</div>
 
 		<div class="row">
-  			
-  			<div style="margin-top: 10px;  margin-left: 130px">
-  				<div class="card mb-3" style="width: 100%;">
-				  <div class="row no-gutters">
-				    <div class="col-md-4">
-				      <img src="../img/tintuc.jpg" class="card-img">
-				    </div>
-				    <div class="col-md-8">
-				      <div class="card-body">
-				        <h5 class="card-title">Tin tức</h5>
-				        <ul class="card-text">
-				        	<li><a href="">Điểm thi Tiếng Anh A2 (chuẩn đầu ra tiếng anh A2 dành cho k60 trở về trước)</a></li>
-							<li><a href="">Điểm thi Tiếng Anh B1 (chuẩn đầu ra tiếng anh B1 dành cho k61 trở về sau)</a></li>
-				        </ul>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				<div class="card mb-3" style="width: 100%;">
-				  <div class="row no-gutters">
-				    <div class="col-md-4">
-				      <img src="../img/thongbao.png" class="card-img" alt="...">
-				    </div>
-				    <div class="col-md-8">
-				      <div class="card-body">
-				        <h5 class="card-title">Thông báo</h5>
-				        <ul class="card-text">
-				        	<li><a href="">Lịch thi học kì II năm học 2018 - 2019</a></li>
-				        	<li><a href="">Thông báo lịch và phòng thi A2</a></li>
-				        </ul>
-				      </div>
-				    </div>
-				  </div>
-				</div>
+  			<div style="margin-top: 40px;  margin-left: 130px; width: 1250px"> 
+  				<h2 style="background-color: #4994F4; padding-left: 20px">Tin tức và Thông báo</h2>
+	  					<ul style="font-size: 25px">
+	  						<li><a href="TB1.php">Thông báo thi chuẩn Tiếng Anh đầu ra cho trình độ đại học hệ chính quy đợt 4 năm 2019 (27/11/2019)</a></li>
+	  						<li><a href="TB2.php">Kết quả thi chuẩn Tiếng Anh đầu đợt 3 năm 2019 (11/10/2019)</a></li>
+	  						<li><a href="TB3.php">Thông báo thi chuẩn Tiếng Anh đầu ra cho trình độ đại học hệ chính quy đợt 3 năm 2019 tại Hà Nội (30/08/2019)</a></li>
+	  						<li><a href="TB4.php">Danh sách các môn điều chỉnh lịch thi GD2, HK2, 2018_2019 (13/06/2019)</a></li>
+	  						<li><a href="#">Triển khai kế hoạch học kỳ hè năm học 2018-2019 (12/06/2019)</a></li>
+	  						<li><a href="#">Thông báo thi chuẩn Tiếng Anh đâu ra cho trình độ đại học hệ chính quy đợt 2 năm 2019 tại Hà Nội (02/04/2019)</a></li>
+	  						<li><a href="#">Thông báo kết quả thi chuẩn Tiếng Anh đầu ra đợt 1 năm 2019 (22/02/2019)</a></li>
+	  						<li><a href="#">Thông báo về tổ chức thi chuẩn Tiếng Anh đầu ra cho trình độ đại học hệ chính quy đợt 1 năm 2019 tại Hà Nội (03/12/2018)</a></li>
+	  						<li><a href="#">Thông báo kết quả thi chuẩn Tiếng Anh đầu ra đợt 2 năm 2019 tại Hà Nội (10/06/2019)</a></li>
+	  						<li><a href="#">Kết quả thi chuẩn Tiếng Anh đầu ra cho hệ ĐHCQ đợt 3 năm 2018 (30/11/2018)</a></li>
+	  					</ul>
   			</div>
 		</div>
 	</main>
 
-	<footer class="page-footer">
+	<footer class="page-footer" style="margin-top: 40px">
 		<div class="wrapper">
 				<div class="footer-col">
 					<h3>MAP</h3>

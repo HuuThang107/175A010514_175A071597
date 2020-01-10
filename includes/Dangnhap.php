@@ -10,7 +10,7 @@ session_start();
   <link rel="stylesheet" href="../css/dangnhap.css">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
 </head>
-<body>
+<body style="margin-left: 70px">
     <a href="Trangchu.php">Quay lại</a>
   <form method="POST" action="Dangnhap.php">
   <form method="POST" action="Dangnhap.php">

@@ -17,7 +17,7 @@ if(isset($_POST['tentk']))
 
 if(isset($_POST['newID'])) {
     $id = $_POST['newID'];
-    $delete = "DELETE FROM taikhoan WHERE id ='$id' ";
+    $delete = "DELETE FROM taikhoan WHERE id ='$id' and cap <3";
     $del = mysqli_query($conn, $delete);
 }
 
