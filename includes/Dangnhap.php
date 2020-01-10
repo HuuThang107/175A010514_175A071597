@@ -5,56 +5,93 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Đăng nhập</title>
-  <link rel="stylesheet" href="../css/dangnhap.css">
-  <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <title>Login V3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../img/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <!--===============================================================================================-->
+
 </head>
-<body style="margin-left: 70px">
-    <a href="Trangchu.php">Quay lại</a>
-  <form method="POST" action="Dangnhap.php">
-  <form method="POST" action="Dangnhap.php">
-<div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-        <div class="d-flex justify-content-center">
-          <div class="brand_logo_container">
-            <img src="../img/icon.png" class="brand_logo" alt="Logo">
-          </div>
-        </div>
-        <div class="form_container">
-          <form>
-              <div class="input-group" style="font-size: 50px">
-                <span><i class="fa fa-user"></i></span>
-                <input type="text" name="username" value="" placeholder="Tài khoản" style="font-size: 20px" >
-              </div>
-              <div class="input-group" style="font-size: 40px">
-                <span><i class="fa fa-key"></i></span>
-                <input type="password" name="password" value="" placeholder="Mật khẩu" style="font-size: 20px">
-            </div>
+<body>
+<a href="Trangchu.php">Quay lại</a>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('../img/bg-01.jpg');">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" method="POST" action="Dangnhap.php">
+          <span class="login100-form-logo">
+            <i class="zmdi zmdi-landscape"></i>
+          </span>
 
-            <div class="form-group">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customControlInline">
-                <label class="custom-control-label" for="customControlInline">Ghi nhớ</label>
-              </div>
-            </div>
-              <div class=" justify-content-center mt-3 login_container">
-          <input type="submit" name="btn_submit" class="btn-warning login_btn" style="font-size: 18px" value="Đăng Nhập">
-           </div>
-          </form>
-        </div>
+                <span class="login100-form-title p-b-34 p-t-27">
+            Log in
+          </span>
 
-        <div class="mt-4">
-          <div class="d-flex justify-content-center links">
-            <a href="#">Quên mật khẩu ?</a>
-          </div>
+                <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                    <input class="input100" type="text" name="username" placeholder="Tài khoản">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" type="password" name="password" placeholder="Mật khẩu">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+
+                <div class="container-login100-form-btn">
+                    <input class="login100-form-btn" type="submit" name="btn_submit" value="Login">
+                </div>
+                <div class="text-center p-t-90">
+                    <a class="txt1" href="#">
+                    </a>
+                </div>
+            </form>
         </div>
-      </div>
     </div>
-  </div>
-  </form>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/bootstrap/js/popper.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/daterangepicker/moment.min.js"></script>
+<script src="../vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="../js/main.js"></script>
+
 </body>
+
+</html>
 <?php
 require_once ("../includes/connection.php");
 
@@ -100,7 +137,5 @@ if (isset($_POST["btn_submit"])) {
     }
 }
 ?>
-</html>
-
 
 
