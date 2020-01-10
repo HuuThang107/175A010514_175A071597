@@ -20,17 +20,19 @@ if (isset($_POST['malophocphan']) && isset($_POST['masv'])) {
 
 if (isset($_POST['newID'])) {
     $id = $_POST['newID'];
-    $delete = "DELETE FROM lop_sinhvien WHERE lop_sinhvien.masv ='$id'  ";
+    $delete = "DELETE FROM lop_sinhvien WHERE id ='$id'  ";
     $del = mysqli_query($conn, $delete);
 }
 
 
 //Load du lieu
-$query = "SELECT lop_sinhvien.masv,tenlophocphan,tensv,dcc,dgk,dbt,dth,trongso,diemthi,((dcc+dgk+dbt+dth)/4) as dqt,(((dcc+dgk+dbt+dth)/4)*trongso)+(diemthi*(1-trongso)) as dtk  FROM lop_sinhvien,lophocphan,sinhvien where lop_sinhvien.malophocphan=lophocphan.malophocphan and lop_sinhvien.masv=sinhvien.masv";
+$query = "SELECT id,tenlophocphan,tensv,dcc,dgk,dbt,dth,trongso,diemthi,((dcc+dgk+dbt+dth)/4) as dqt,((dcc+dgk+dbt+dth)/4)*(1-trongso)+(diemthi*trongso) as dtk  
+FROM lop_sinhvien,lophocphan,sinhvien 
+where lop_sinhvien.malophocphan=lophocphan.malophocphan and lop_sinhvien.masv=sinhvien.masv";
 $result = mysqli_query($conn, $query);
 $number_of_rows = mysqli_num_rows($result);
 $output = '';
-$output .= '<table class ="table table-bordered table-triped">
+$output .= '<table class ="table table-bordered table-triped" style = "width : 1050px; margin-left : 10px">
 <tr>
    <td align = "center">Thứ tự</td>
    <td align = "center">Tên Lớp học phần</td>
@@ -39,7 +41,7 @@ $output .= '<table class ="table table-bordered table-triped">
    <td align = "center">Điểm giữa kì</td>
    <td align = "center">Điểm bài tập</td>
    <td align = "center">Điểm thực hành</td>
-   <td align = "center">Trọng số điểm quá trình</td>
+   <td align = "center">Trọng số điểm cuối kì</td>
    <td align = "center">Điểm thi</td>
    <td align = "center">Điểm quá trình</td>
    <td align = "center">Điểm tổng kết</td>
@@ -63,8 +65,8 @@ if ($number_of_rows > 0) {
             <td align = "center">' . $row['diemthi'] . '</td>
             <td align = "center">' . $row['dqt'] . '</td>
             <td align = "center">' . $row['dtk'] . '</td>
-            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="'. $row['masv'] .'">Cập nhật</button></td>
-            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="'. $row['masv'].'" >Bay màu</button></td>
+            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit "  id="'. $row['id'] .'">Cập nhật</button></td>
+            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="'.$row['id'].'" >Bay màu</button></td>
 </tr>';
     }
 } else {

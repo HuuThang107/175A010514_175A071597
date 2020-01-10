@@ -33,13 +33,13 @@ $query = "SELECT tenmon,mamon,tennganh FROM monhoc,nganhhoc where monhoc.nganh =
 $result = mysqli_query($conn, $query);
 $number_of_rows = mysqli_num_rows($result);
 $output = '';
-$output .='<table class ="table table-bordered table-triped">
+$output .='<table class ="table table-bordered table-triped" style="width :900px; margin-left: 100px; margin-top: 20px">
 <tr>
-   <th>Thứ tự</th>
-   <th>Tên Môn</th>
-   <th>Tên ngành</th>
-   <th>Sửa</th>
-   <th>Xóa</th>
+   <td align = "center">Thứ tự</td>
+   <td align = "center">Tên Môn</td>
+   <td align = "center">Tên ngành</td>
+   <td align = "center">Sửa</td>
+   <td align = "center">Xóa</td>
 </tr>
 ';
 if($number_of_rows>0){
@@ -47,11 +47,11 @@ if($number_of_rows>0){
     while($row = mysqli_fetch_array($result)){
         $count ++;
         $output.='<tr>
-            <td>'.$count.'</td>
-            <td>'.$row['tenmon'].'</td>
-            <td>'.$row['tennganh'].'</td>
-            <td><button type="button"  class="btn btn-warning btn-xs edit " id="'.$row['mamon'].'">Cập nhật</button></td>
-            <td><button type="button"  class="btn btn-danger btn-xs del " id="'.$row['mamon'].'">Bay màu</button></td>
+            <td align = "center">'.$count.'</td>
+            <td align = "center">'.$row['tenmon'].'</td>
+            <td align = "center">'.$row['tennganh'].'</td>
+            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="'.$row['mamon'].'">Cập nhật</button></td>
+            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="'.$row['mamon'].'">Bay màu</button></td>
 </tr>';
     }
 }

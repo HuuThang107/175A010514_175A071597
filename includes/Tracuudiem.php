@@ -1,3 +1,7 @@
+
+<?php
+require_once ("../includes/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +10,16 @@
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../font/css/all.css">
 	<link rel="stylesheet" href="../css/Trangchu.css">
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<header>
@@ -25,117 +39,18 @@
 	</header>
 
 	<main>
-		<div class="container">
-							<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-				  <ol class="carousel-indicators">
-				    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-				    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>				  </ol>
-				  <div class="carousel-inner">
-				    <div class="carousel-item active">
-				      <img src="../img/slide1.png" class="d-block w-100" alt="...">
-				      <div class="carousel-caption d-none d-md-block">
-				        <h5>Lễ kỉ niệm</h5>
-				        <p>60 năm thành lập trường (1959 -2019)</p>
-				      </div>
-				    </div>
-				    <div class="carousel-item">
-				      <img src="../img/slide2.png" class="d-block w-100" alt="...">
-				      <div class="carousel-caption d-none d-md-block">
-				        <h5>Chuỗi hoạt động </h5>
-				        <p>60 năm thành lập trường (1959- 2019)</p>
-				      </div>
-				    </div>
-				  </div>
-				  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				    <span class="sr-only">Previous</span>
-				  </a>
-				  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="sr-only">Next</span>
-				  </a>
-				</div>
-		</div>
-
-		<div class="row">
-  			
-
-		</div>
-		<div style="height: 300px">
-		<div class="container">
-			<div class="row" style="margin-top: 50px">
-			<div class="col-md-push-3" style="margin-left: 30px; height:100%"><h2 style="color: blue">Tra cứu điểm thi</h2></div>
-			<div class="col-md-push-9">
-				<form class="form-inline my-2 my-lg-0" style="margin-left: 200px">
-      				<input class="form-control mr-sm-2" type="search" placeholder="Nhập MSV, CMT" aria-label="Search" style="height: 30px;">
-      				<button type="button" class="btn btn-danger btn-sm " style="font-size: 10px;">Tìm</button>
-    			</form>
-			</div>
-			<form class="form-group row" style="margin-left: 180px ; margin-top: 20px">
-			<div class="label">Năm học :</div>
-			<div class="value" style="margin-left: 10px">
-				<select name="select" id="">
-					<option selected="selected">2018-2019</option>
-					<option value="1">2017-2018</option>
-					<option value="1">2016-2017</option>
-				</select>
-			</div>
-			<div class="label" style="margin-left: 30px">Học kì :</div>
-			<div class="value" style="margin-left: 10px">
-				<select name="select" id="">
-					<option selected="selected">Học kì II 2018-2019</option>
-					<option value="1">Học kì I 2018-2019</option>
-					<option value="1">Học kì II 2017-2018</option>
-					<option value="1">Học kì I 2017-2018</option>
-					<option value="1">Học kì II 2016-2017</option>
-					<option value="1">Học kì I 2016-2017</option>
-				</select>
-			</div>
-			<div class="label" style="margin-left: 30px">Giai đoạn :</div>
-			<div class="value" style="margin-left: 10px">
-				<select name="select" id="">
-					<option selected="selected">Học kì II 2018-2019 (GĐ2)</option>
-					<option selected="selected">Học kì II 2018-2019 (GĐ1)</option>
-					<option value="1">Học kì I 2018-2019(GĐ2)</option>
-					<option value="1">Học kì I 2018-2019(GĐ1)</option>
-					<option value="1">Học kì II 2017-2018(GĐ2)</option>
-					<option value="1">Học kì II 2017-2018(GĐ1)</option>
-					<option value="1">Học kì I 2017-2018(GĐ2)</option>
-					<option value="1">Học kì I 2017-2018(GĐ1)</option>
-					<option value="1">Học kì II 2016-2017(GĐ2)</option>
-					<option value="1">Học kì II 2016-2017(GĐ1)</option>
-					<option value="1">Học kì I 2016-2017(GĐ2)</option>
-					<option value="1">Học kì I 2016-2017(GĐ1)</option>
-				</select>
-			</div>
-                <div class="example">
-                    <div class="container">
-                        <div class="row">
-                            <h2>Thông tin điểm</h2>
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Lớp</th>
-                                        <th>Tên sinh viên</th>
-                                        <th>Điểm chuyên cần</th>
-                                        <th>Điểm giữa kì</th>
-                                        <th>Điểm quá trình</th>
-                                        <th>Điểm thi</th>
-                                        <th>Điểm KTHP</th>
-                                        <th>Điểm chữ</th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container">
+            <br />
+            <h2 align="center">Tìm Kiếm Điểm</h2><br />
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">Tìm Kiếm</span>
+                    <input type="text" name="timkiem" id="timkiem" placeholder="Nhập mã sinh viên,chứng minh thư" class="form-control" />
                 </div>
-			</form>
-			</div>
-		</div>
-	</div>
+            </div>
+            <br />
+            <div id="hienthi"></div>
+        </div>
 	</main>
 
 	<footer class="page-footer">
@@ -169,18 +84,38 @@
 							<li>Fax: (84).650.3833 489</li>
 					</ul>
 				</div>
-				<div class="footer-col-social">
-					<h3>Liên hệ</h3>
-					<ul>
-							<li><a href="https://www.facebook.com/groups/dhthuyloi/" class="fb"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="http://www.tlu.edu.vn/" class="gg"><i class="fa fa-google"></i></a></li>
-					</ul>
-				</div>
 		</div>
 	</footer>
+    <script>
+        $(document).ready(function(){
 
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="../css/bootstrap.js"></script>
+            load_data();
+
+            function load_data(query)
+            {
+                $.ajax({
+                    url:"search.php",
+                    method:"POST",
+                    data:{query:query},
+                    success:function(data)
+                    {
+                        $('#hienthi').html(data);
+                    }
+                });
+            }
+            $('#timkiem').keyup(function(){
+                var search = $(this).val();
+                if(search != '')
+                {
+                    load_data(search);
+                }
+                else
+                {
+                    load_data();
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

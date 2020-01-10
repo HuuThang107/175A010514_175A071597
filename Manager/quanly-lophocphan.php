@@ -9,11 +9,21 @@ if (isset($_POST['mamon'])){
     $output = '';
     $output = '<option>-----------Chọn giáo viên----------</option>';
     while ($row = mysqli_fetch_array($result)){
+        $output.='<option value = "'.$row['magv1'].'">'.$row['tengv1'].'</option>';
+    }
+    echo $output;
+}
+if (isset($_POST['mamon1'])){
+    $id = $_POST['mamon1'];
+    $query = "SELECT tengv,giaovien_mon.magv FROM giaovien,giaovien_mon WHERE giaovien_mon.mamon ='$id' and giaovien_mon.magv = giaovien.magv";
+    $result = mysqli_query($conn, $query);
+    $output = '';
+    $output = '<option>-----------Chọn giáo viên----------</option>';
+    while ($row = mysqli_fetch_array($result)){
         $output.='<option value = "'.$row['magv'].'">'.$row['tengv'].'</option>';
     }
     echo $output;
 }
-
 //Them du lieu
 if (isset($_POST['tenlophocphan'])) {
     $tenlophocphan = $_POST['tenlophocphan'];
@@ -44,7 +54,7 @@ $query = "SELECT malophocphan,tenlophocphan,tenmon,tengv,namhoc,hocki,giaidoan F
 $result = mysqli_query($conn, $query);
 $number_of_rows = mysqli_num_rows($result);
 $output = '';
-$output .= '<table class ="table table-bordered table-triped" style = "width : 900px; margin-left: 150px">
+$output .= '<table class ="table table-bordered table-triped" style=" width: 1000px ; margin-left: 60px">
 <tr>
    <td align = "center">Thứ tự</td>
    <td align = "center">Tên Lớp học phần</td>
@@ -69,8 +79,8 @@ if ($number_of_rows > 0) {
             <td align = "center">' . $row['namhoc'] . '</td>
             <td align = "center">' . $row['hocki'] . '</td>
             <td align = "center">' . $row['giaidoan'] . '</td>
-            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="' . $row['malophocphan'] . '">Cập nhật</button></td>
-            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="' . $row['malophocphan'] . '">Bay màu</button></td>
+            <td align = "center"><button type="button"  class="btn btn-warning btn-xs edit " id="'. $row['malophocphan'].'">Cập nhật</button></td>
+            <td align = "center"><button type="button"  class="btn btn-danger btn-xs del " id="'. $row['malophocphan'].'">Bay màu</button></td>
 </tr>';
     }
 } else {

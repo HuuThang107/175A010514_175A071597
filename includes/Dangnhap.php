@@ -11,7 +11,8 @@ session_start();
   <link rel="stylesheet" href="../css/font-awesome.min.css">
 </head>
 <body>
-  <a href="Trangchu.php">Quay lại</a>
+    <a href="Trangchu.php">Quay lại</a>
+  <form method="POST" action="Dangnhap.php">
   <form method="POST" action="Dangnhap.php">
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
@@ -80,22 +81,21 @@ if (isset($_POST["btn_submit"])) {
             while ( $data = mysqli_fetch_array($query) ) {
                 $_SESSION["id"] = $data["id"];
                 $_SESSION['tentk'] = $data["tentk"];
-                $_SESSION["matkhau"] = $data["mk"];
+                $_SESSION["matkhau"] = $data["matkhau"];
                 $_SESSION["cap"] = $data["cap"];
+                $_SESSION["email"] = $data["email"];
+
                 if($data['cap']==3){
-                    header("location: ../Admin/Quantri_danhsachgiangvien.php");
+                    header("location: ../Admin/Quantri_danhsachquantri.php");
                 }
-                elseif ($data['level']==2){
-                    header("location: ../Manager/Quanly_danhsachlop.php");
+                elseif ($data['cap']==2){
+                    header("location: ../Manager/Quanly_danhsachnganh.php");
                 }
-                elseif($data['level']==1){
-                    header("location: ../Teacher/Giangvien_danhsachsinhvien.php");
+                elseif($data['cap']==1){
+                    header("location: ../Teacher/Giangvien_nhap.php");
                 }
 
             }
-
-
-
         }
     }
 }

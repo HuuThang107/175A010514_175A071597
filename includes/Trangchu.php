@@ -24,8 +24,7 @@
         </nav>
 	</header>
 
-	<main>
-		<div class="container">
+	<main style="margin-top: 5px">
 							<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 				  <ol class="carousel-indicators">
 				    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -55,7 +54,6 @@
 				    <span class="sr-only">Next</span>
 				  </a>
 				</div>
-		</div>
 
 		<div class="row">
   			
@@ -125,13 +123,6 @@
 							<li>Địa chỉ: Phường An Thạnh, TX Thuận An, Tỉnh Bình Dương</li>
 							<li>Điện thoại: (84).650.3748 620</li>
 							<li>Fax: (84).650.3833 489</li>
-					</ul>
-				</div>
-				<div class="footer-col-social">
-					<h3>Liên hệ</h3>
-					<ul>
-							<li><a href="https://www.facebook.com/groups/dhthuyloi/" class="fb"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="http://www.tlu.edu.vn/" class="gg"><i class="fa fa-google"></i></a></li>
 					</ul>
 				</div>
 		</div>

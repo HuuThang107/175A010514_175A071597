@@ -1,7 +1,6 @@
 <?php
 require_once ("../includes/connection.php");
 
-
 //Them du lieu
 if(isset($_POST['tennganh']))
 {
@@ -12,19 +11,6 @@ if(isset($_POST['tennganh']))
 
 }
 
-
-//Sua du lieu
-if(isset($_POST['manganh']))
-{
-    $id = $_POST['manganh'];
-    $query = "SELECT * FROM nganhhoc where manganh = '$id'";
-    $result = mysqli_query($conn,$query);
-    while ($row = mysqli_fetch_array($result)){
-        $output['tennganh'] = $row['tennganh'];
-        $output['mota'] = $row['mota'];
-    }
-    echo json_encode($output);
-}
 //Xoa du lieu
 
 if(isset($_POST['newID'])) {
@@ -33,19 +19,18 @@ if(isset($_POST['newID'])) {
     $del = mysqli_query($conn, $delete);
 }
 
-
 //Load du lieu
 $query = "SELECT * FROM nganhhoc";
 $result = mysqli_query($conn, $query);
 $number_of_rows = mysqli_num_rows($result);
 $output = '';
-$output .='<table class ="table table-bordered table-triped" style = "width : 900px ; margin-left: 200px">
+$output .='<table class ="table table-bordered table-triped" style = "width : 900px; margin-left: 100px">
 <tr>
-   <td align = "center" width = "200px">Thứ tự</td>
-   <td align = "center" width = "200px">Tên Ngành</td>
-   <td align = "center" width = "200px">Mô tả</td>
-   <td align = "center" width = "70px">Sửa</td>
-   <td align = "center" width = "70px">Xóa</td>
+   <td align = "center">Thứ tự</td>
+   <td align = "center">Tên Ngành</td>
+   <td align = "center">Mô tả</td>
+   <td align = "center">Sửa</td>
+   <td align = "center">Xóa</td>
 </tr>
 ';
 if($number_of_rows>0){
