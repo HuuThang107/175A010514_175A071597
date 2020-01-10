@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 10, 2020 lúc 05:55 AM
+-- Thời gian đã tạo: Th1 10, 2020 lúc 09:39 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
@@ -112,11 +112,11 @@ CREATE TABLE `lop_sinhvien` (
 --
 
 INSERT INTO `lop_sinhvien` (`id`, `malophocphan`, `masv`, `dcc`, `dgk`, `dbt`, `dth`, `trongso`, `diemthi`) VALUES
-(7, 19, 13, 8, 8, 8, 8, 0.5, 8),
 (9, 20, 14, 9, 9, 9, 9, 0.5, 9),
 (10, 19, 14, 8, 8, 8, 8, 0.7, 8),
 (11, 20, 15, 2, 2, 2, 2, 0.5, 2),
-(12, 19, 15, 4, 4, 4, 4, 0.5, 4);
+(12, 19, 15, 4, 4, 4, 4, 0.5, 4),
+(13, 19, 16, 10, 10, 10, 10, 0.7, 10);
 
 -- --------------------------------------------------------
 
@@ -182,7 +182,8 @@ CREATE TABLE `sinhvien` (
 INSERT INTO `sinhvien` (`masv`, `tensv`, `cmt`, `diachi`, `lop`) VALUES
 (13, 'Nguyễn Văn B', '111111132', 'Ba Vì ', '59TH13'),
 (14, 'Nguyễn Văn C', '222222222', 'HN', '59TH17'),
-(15, 'Nguyễn Văn D', '333333333', 'Hà Nội', '544');
+(15, 'Nguyễn Văn D', '333333333', 'Hà Nội', '544'),
+(16, 'Nguyễn Xuân An', '099044', '175A071577', '59TH1');
 
 -- --------------------------------------------------------
 
@@ -203,9 +204,10 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`id`, `tentk`, `matkhau`, `cap`, `email`) VALUES
-(7, 'admin', '1234567', 2, 'annx72@gmail.com'),
 (9, 'annx72', '12345689', 3, 'nguyenxuanan@gmail.com'),
-(10, 'teacher', '123456', 1, 'adsfsd@gmail.com');
+(11, 'admin', '123456', 3, 'admin@gmail.com'),
+(12, 'manager', '123456', 2, 'manager@gmail.com'),
+(15, 'teacher', '123456', 1, 'teacher@gmail.com');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -292,7 +294,7 @@ ALTER TABLE `lophocphan`
 -- AUTO_INCREMENT cho bảng `lop_sinhvien`
 --
 ALTER TABLE `lop_sinhvien`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `monhoc`
@@ -310,13 +312,13 @@ ALTER TABLE `nganhhoc`
 -- AUTO_INCREMENT cho bảng `sinhvien`
 --
 ALTER TABLE `sinhvien`
-  MODIFY `masv` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `masv` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
